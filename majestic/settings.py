@@ -34,10 +34,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # My apps
+    # Majestic apps
     'products',
     'contact_us',
-    # AWS apps
+    # Cloud storage
     'storages',
     # File cleanup
     'django_cleanup',
