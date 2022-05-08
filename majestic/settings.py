@@ -127,6 +127,7 @@ django_heroku.settings(locals())
 
 # Assets setting (static files and image files)
 USE_S3 = os.environ.get('USE_S3') == 'True'
+USE_AZURE = os.environ.get('USE_AZURE') == 'True'
 
 if USE_S3:
     # AWS settings
@@ -140,6 +141,13 @@ if USE_S3:
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
     STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
     DEFAULT_FILE_STORAGE = 'majestic.storage_backends.MediaStorage'
+if USE_AZURE:
+    DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+    STATICFILES_STORAGE = 'majestic.custom_storage.StaticAzureStorage'
+    AZURE_ACCOUNT_NAME = os.environ.get('AZURE_ACCOUNT_NAME')
+    AZURE_ACCOUNT_KEY = os.environ.get('AZURE_ACCOUNT_KEY')
+    AZURE_CONTAINER = os.environ.get('AZURE_CONTAINER')
+    AZURE_LOCATION = 'media'
 else:
     # Local settings
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
