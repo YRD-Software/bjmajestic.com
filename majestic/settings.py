@@ -141,7 +141,7 @@ if USE_S3:
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
     STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
     DEFAULT_FILE_STORAGE = 'majestic.storage_backends.MediaStorage'
-if USE_AZURE:
+if USE_AZURE: # FIXME: not working
     DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
     STATICFILES_STORAGE = 'majestic.custom_storage.StaticAzureStorage'
     AZURE_ACCOUNT_NAME = os.environ.get('AZURE_ACCOUNT_NAME')
