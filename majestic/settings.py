@@ -126,15 +126,20 @@ USE_TZ = True
 django_heroku.settings(locals())
 
 # Assets setting (static files and image files)
+
 USE_AZURE = os.environ.get('USE_AZURE') == 'True'
 
 if USE_AZURE:
+    """Configure Azure storage for static and media files.
+    """
     DEFAULT_FILE_STORAGE = 'majestic.custom_storage.MediaAzureStorage'
     STATICFILES_STORAGE = 'majestic.custom_storage.StaticAzureStorage'
     AZURE_ACCOUNT_NAME = os.environ.get('AZURE_ACCOUNT_NAME')
     AZURE_ACCOUNT_KEY = os.environ.get('AZURE_ACCOUNT_KEY')
     AZURE_OVERWRITE_FILES = True
 else:
+    """Configure local storage for static and media files.
+    """
     # Local settings
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
     STATIC_URL = '/static/'
