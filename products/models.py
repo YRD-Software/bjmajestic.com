@@ -4,9 +4,8 @@ from django.urls import reverse
 
 # Create your models here.
 
-class Product(models.Model): # FIXME: not working
+class Product(models.Model):
 	"""A description for a product"""
-	id = models.IntegerField(primary_key=True)
 	name = models.CharField('product', max_length=30)
 	description = models.TextField()
 	photo = models.ImageField(upload_to='product_images/')
@@ -21,7 +20,6 @@ class Product(models.Model): # FIXME: not working
 
 class ProductPhoto(models.Model):
 	"""Extra detailed photos of the product."""
-	id = models.IntegerField(primary_key=True)
 	product = models.ForeignKey(Product, on_delete=models.CASCADE)
 	detail_photo = models.ImageField(upload_to='detail_product_images/')
 
@@ -35,7 +33,6 @@ class ProductPhoto(models.Model):
 
 class About(models.Model):
 	"""Text for about us."""
-	id = models.IntegerField(primary_key=True)
 	title = "About"
 	text = models.TextField('About Us')
 
