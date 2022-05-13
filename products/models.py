@@ -4,7 +4,7 @@ from django.urls import reverse
 
 # Create your models here.
 
-class Product(models.Model):
+class Product(models.Model): # FIXME: not working
 	"""A description for a product"""
 	id = models.IntegerField(primary_key=True)
 	name = models.CharField('product', max_length=30)
