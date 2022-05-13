@@ -126,33 +126,18 @@ USE_TZ = True
 django_heroku.settings(locals())
 
 # Assets setting (static files and image files)
-USE_S3 = os.environ.get('USE_S3') == 'True'
 USE_AZURE = os.environ.get('USE_AZURE') == 'True'
 
-if USE_S3:
-    # AWS settings
-    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
-    AWS_DEFAULT_ACL = 'public-read'
-    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400', }
-    AWS_LOCATION = 'static'
-    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
-    STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-    DEFAULT_FILE_STORAGE = 'majestic.storage_backends.MediaStorage'
-if USE_AZURE: # FIXME: not working
-    DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+if USE_AZURE:
+    DEFAULT_FILE_STORAGE = 'majestic.custom_storage.MediaAzureStorage'
     STATICFILES_STORAGE = 'majestic.custom_storage.StaticAzureStorage'
     AZURE_ACCOUNT_NAME = os.environ.get('AZURE_ACCOUNT_NAME')
     AZURE_ACCOUNT_KEY = os.environ.get('AZURE_ACCOUNT_KEY')
-    AZURE_CONTAINER = os.environ.get('AZURE_CONTAINER')
-    AZURE_LOCATION = 'media'
+    AZURE_OVERWRITE_FILES = True
 else:
     # Local settings
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
     STATIC_URL = '/static/'
-
     # User uploaded files settings
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
     MEDIA_URL = '/media/'

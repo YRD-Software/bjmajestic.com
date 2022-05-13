@@ -1,5 +1,7 @@
-# from storages.backends.azure_storage import AzureStorage
+from storages.backends.azure_storage import AzureStorage
 
-# class StaticAzureStorage(AzureStorage): # FIXME: not working
-#     azure_container = 'static'
-#     azure_location = 'static'
+class StaticAzureStorage(AzureStorage):
+    azure_container = 'static'
+    
+class MediaAzureStorage(AzureStorage): 
+    azure_container = 'media'
