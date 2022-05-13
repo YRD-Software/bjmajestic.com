@@ -31,6 +31,8 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = ['majestic.azurewebsites.net']
 
+CSRF_TRUSTED_ORIGINS = ['majestic.azurewebsites.net']
+
 # Application definition
 
 INSTALLED_APPS = [
