@@ -140,10 +140,10 @@ if USE_AZURE:
 else:
     """Configure local storage for static and media files.
     """
-    # Local settings
+    # Static files
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
     STATIC_URL = '/static/'
-    # User uploaded files settings
+    # Media files
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
     MEDIA_URL = '/media/'
 
