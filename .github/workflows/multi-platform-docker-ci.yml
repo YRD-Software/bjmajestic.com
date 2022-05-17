@@ -32,3 +32,14 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: fjl1104/majestic:latest
+          secrets: |
+            "USE_AZURE=${{ secrets.USE_AZURE }}"
+            "AZURE_ACCOUNT_KEY=${{ secrets.AZURE_ACCOUNT_KEY }}"
+            "AZURE_ACCOUNT_NAME=${{ secrets.AZURE_ACCOUNT_NAME }}"
+            "USE_SMTP=${{ secrets.USE_SMTP }}"
+            "DEFAULT_FROM_EMAIL=${{ secrets.DEFAULT_FROM_EMAIL }}"
+            "DEFAULT_TO_EMAIL=${{ secrets.DEFAULT_TO_EMAIL }}"
+            "EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }}"
+            "EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }}"
+            "DJANGO_DEBUG=${{ secrets.DJANGO_DEBUG }}"
+            "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}"
