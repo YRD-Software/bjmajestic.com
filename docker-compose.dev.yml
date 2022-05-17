@@ -1,12 +1,23 @@
 version: "3.9"
    
-services:
+services: 
+  db:
+    image: postgres:14
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+
   django:
-    build: ./docker/django
+    build: 
+      context: ./
+      dockerfile: ./docker/django/Dockerfile
     command: python manage.py runserver 0.0.0.0:8000
     restart: always
     ports:
       - "8000:8000"
-  
-  postgres:
-    image: postgres:latest
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
