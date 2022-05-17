@@ -4,16 +4,5 @@ services:
   django:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
-    environment:
-      - DJANGO_DEBUG=False
-      - SECRET_KEY=${SECRET_KEY}
-      - USE_AZURE=True
-      - AZURE_ACCOUNT_NAME=${AZURE_ACCOUNT_NAME}
-      - AZURE_ACCOUNT_KEY=${AZURE_ACCOUNT_KEY}
-      - DEFAULT_FROM_EMAIL=${DEFAULT_FROM_EMAIL}
-      - DEFAULT_TO_EMAIL=${DEFAULT_TO_EMAIL}
-      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
-      - EMAIL_HOST_USER=${EMAIL_HOST_USER}
-      - USE_SMTP=True
     ports:
       - "8000:8000"
