@@ -1,0 +1,17 @@
+# Local Environment
+/cw_env/
+/venv/
+__pycache__/
+.env
+
+# IDEs
+/.vscode/
+/.idea/
+
+# Django Local Assets
+/staticfiles/
+/media/
+*.sqlite3
+
+#macOS
+.DS_Store
