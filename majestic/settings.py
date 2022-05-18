@@ -90,11 +90,11 @@ if os.environ.get('USE_POSTGRES') == 'True':
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": "postgres",
+            "NAME": os.environ.get('POSTGRES_DBNAME'),
             "USER": "postgres",
             "PASSWORD": os.environ.get('POSTGRES_PASSWORD'),
-            "HOST": "db",  # set in docker-compose.yml
-            "PORT": "5432",  # default postgres port
+            "HOST": os.environ.get('POSTGRES_DBHOST'),  # set in docker-compose.yml
+            "PORT": os.environ.get('POSTGRES_DBPORT'),  # default postgres port
         }
     }
 else:
