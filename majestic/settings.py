@@ -86,6 +86,10 @@ WSGI_APPLICATION = 'majestic.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# Superuser initialization variables
+SUPERUSER_USERNAME = os.environ.get('SUPERUSER_USERNAME')
+SUPERUSER_PASSWORD = os.environ.get('SUPERUSER_PASSWORD')
+
 if os.environ.get('USE_POSTGRES') == 'True':
     DATABASES = {
         "default": {
