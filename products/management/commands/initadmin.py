@@ -13,4 +13,4 @@ class Command(BaseCommand):
             admin.save()
             self.stdout.write(self.style.SUCCESS('Superuser created successfully.'))
         else:
-            print('Admin accounts can only be initialized if no Accounts exist')
+            print('Superuser initialization skipped. (User already exist)')
