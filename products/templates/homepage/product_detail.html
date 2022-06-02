@@ -1,0 +1,47 @@
+{% extends "homepage/base.html" %}
+{% load static %}
+
+{% block CSS %}
+<style>
+  .center-cropped {
+    width: 100%;
+    height: 25rem;
+    object-fit: cover;
+    object-position: center;
+  }
+</style>
+{% endblock CSS %}
+
+{% block content %}
+<div class="container-sm mt-4">
+  <div class="card mx-auto col-sm-auto col-md-8 bg-light">
+    <div class="card-header fs-2 text-center">{{ product.name }}</div>
+
+    <!-- This is the carousel code -->
+    <div id="carouselFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active overflow-hidden">
+          <img src="{{ product.photo.url }}" class="img-fluid center-cropped">
+        </div>
+        {% for photo in product.productphoto_set.all %}
+        <div class="carousel-item overflow-hidden">
+          <img src="{{ photo.detail_photo.url }}" class="img-fluid center-cropped">
+        </div>
+        {% endfor %}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselFade" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselFade" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <div class="card-body">
+      <p class="card-text">{{ product.description }}</p>
+    </div>
+  </div>
+</div>
+{% endblock content %}

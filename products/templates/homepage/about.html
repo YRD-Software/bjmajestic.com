@@ -1,0 +1,14 @@
+{% extends "homepage/base.html" %}
+
+{% block content %}
+
+<div class="card m-3 mt-4 bg-light">
+	<div class="card-header fs-2">About Us</div>
+	<div class="card-body">
+		{% for text in texts %}
+		<p class="fw-normal">{{ text.text }}</p>
+		{% endfor %}
+	</div>
+
+</div>
+{% endblock content %}
