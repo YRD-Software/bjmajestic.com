@@ -21,7 +21,7 @@ jmespath==0.10.0
 msrest==0.6.21
 msrestazure==0.6.4
 oauthlib==3.2.0
-Pillow==9.1.0
+Pillow==9.1.1
 pycodestyle==2.7.0
 pycparser==2.21
 psycopg2-binary==2.8.4
