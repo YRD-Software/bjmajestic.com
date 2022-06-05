@@ -8,8 +8,7 @@
 
 {% block content %}
 {% if products %}
-<div id="app" class="container-card">
-	{% endif %}
+<div id="app" class="container-card"> {% endif %}
 	{% for product in products %}
 	<a href="{% url 'products:product_detail' product.pk %}">
 		<card data-image="{{ product.photo.url }}">
