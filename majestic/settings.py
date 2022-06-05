@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 import django_heroku
 
 # Load local .env file
-load_dotenv()
+load_dotenv(dotenv_path='.env.dev') # NOTE: dotenv_path is only for development. Delete it from production code.
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
