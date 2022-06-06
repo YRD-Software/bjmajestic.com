@@ -11,7 +11,7 @@ services:
   django:
     build: 
       context: ./
-      dockerfile: ./docker/django/Dockerfile
+      dockerfile: ./docker/dev/Dockerfile
     command: python manage.py runserver 0.0.0.0:8000
     restart: always
     ports:
