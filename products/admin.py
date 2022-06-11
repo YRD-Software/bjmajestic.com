@@ -9,8 +9,6 @@ class DetailPhotosInline(admin.TabularInline):
     extra = 2
 
 
-# Define how the model is displayed on administration page.
-
 class ProductAdmin(admin.ModelAdmin):
     """Define how the Products page in admin is going to look."""
     fieldsets = [
