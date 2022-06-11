@@ -12,10 +12,11 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from dotenv import load_dotenv
-import django_heroku
+
 
 # Load local .env file
-load_dotenv(dotenv_path='.env.dev') # NOTE: dotenv_path is only for development. Delete it from production code.
+# NOTE: dotenv_path is only for development. Delete it from production code.
+load_dotenv(dotenv_path='.env.dev')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -97,7 +98,8 @@ if os.environ.get('USE_POSTGRES') == 'True':
             "NAME": os.environ.get('POSTGRES_DBNAME'),
             "USER": "postgres",
             "PASSWORD": os.environ.get('POSTGRES_PASSWORD'),
-            "HOST": os.environ.get('POSTGRES_DBHOST'),  # set in docker-compose.yml
+            # set in docker-compose.yml
+            "HOST": os.environ.get('POSTGRES_DBHOST'),
             "PORT": os.environ.get('POSTGRES_DBPORT'),  # default postgres port
         }
     }
@@ -140,8 +142,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Configure Django App for Heroku.
-django_heroku.settings(locals())
 
 # Assets setting (static files and image files)
 
