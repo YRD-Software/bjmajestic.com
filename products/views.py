@@ -1,6 +1,6 @@
 from django.views import generic
 from django.shortcuts import render
-from .models import Product, About
+from .models import Product
 
 # Create your views here.
 
@@ -29,9 +29,3 @@ class DetailProductView(generic.DetailView):
 	template_name = 'homepage/product_detail.html'
 	context_object_name = 'product'
 
-
-def about(request):
-	"""Display about us page."""
-	texts = About.objects.all()
-	context = {'texts': texts, 'page': 'about'}
-	return render(request, 'homepage/about.html', context)

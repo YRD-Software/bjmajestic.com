@@ -10,6 +10,4 @@ urlpatterns = [
 	path('products/', views.ProductsView.as_view(), name='products'),
 	# The product detail page.
 	path('product/<int:pk>/', views.DetailProductView.as_view(), name='product_detail'),
-	# About page.
-	path('about/', views.about, name='about'),
 ]

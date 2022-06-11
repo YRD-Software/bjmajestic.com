@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # Majestic apps
     'products',
     'contact_us',
+    'about',
     # Cloud storage
     'storages',
     # File cleanup
