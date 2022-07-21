@@ -16,7 +16,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-majesticblue sticky-top">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="{% url 'products:index' %}">
+			<a class="navbar-brand ms-3" href="{% url 'products:index' %}">
 				<img src="{% static 'products/logo_transBG.png' %}" height="40" />
 			</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -24,21 +24,28 @@
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<div class="navbar-nav me-auto">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item fw-bold">
-							<a class="nav-link {% if 'product' == page %}active{% endif %}"
+				<div class="navbar-nav ms-auto me-3">
+					<ul class="navbar-nav mb-2 mb-lg-0">
+						<li class="nav-item ms-2">
+							<a class="nav-link text-uppercase {% if 'home' == page %}active fw-bold{% endif %}"
+								href="{% url 'products:index' %}">Home</a>
+						</li>
+						<li class="nav-item ms-2">
+							<a class="nav-link text-uppercase {% if 'product' == page %}active fw-bold{% endif %}"
 								href="{% url 'products:products' %}">Products</a>
 						</li>
-						<li class="nav-item fw-bold">
-							<a class="nav-link {% if 'about' == page %}active{% endif %}"
-								href="{% url 'about:about' %}">About</a>
+						<li class="nav-item ms-2">
+							<a class="nav-link text-uppercase {% if 'about' == page %}active fw-bold{% endif %}"
+								href="{% url 'about:about' %}">About Us</a>
 						</li>
-						<li class="nav-item fw-bold">
-							<a class="nav-link {% if 'contact' == page %}active{% endif %}"
+						<li class="nav-item ms-2">
+							<a class="nav-link text-uppercase {% if 'contact' == page %}active fw-bold{% endif %}"
 								href="{% url 'contact_us:contact' %}">Contact Us</a>
+						</li>
+						<li class="nav-item ms-2">
+							<a class="nav-link text-uppercase {% if 'catalog' == page %}active fw-bold{% endif %}"
+								href="{% url 'contact_us:contact' %}">Catalog</a>
 						</li>
 					</ul>
 				</div>
