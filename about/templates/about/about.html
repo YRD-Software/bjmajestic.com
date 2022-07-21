@@ -1,4 +1,5 @@
 {% extends "homepage/base.html" %}
+{% load static %}
 
 {% block CSS %}
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
@@ -21,26 +22,12 @@
 		</div>
 	</div>
 	<div class="container my-4">
-		<div class="grid" data-masonry='{"percentPosition": true, "itemSelector": ".img-fluid", "gutter": 20 }'>
-			<!-- TODO: Fix the horizontal gaps -->
-			<!-- <div class="grid-item">
-				<img src="https://via.placeholder.com/300" class="card-img-top">
-			</div>
-			<div class="grid-item">
-				<img src="https://via.placeholder.com/150" class="card-img-top">
-			</div> -->
-			<img src="https://via.placeholder.com/150" class="rounded img-fluid" alt="..." style="height: 300px;">
-			<img src="https://via.placeholder.com/300" class="rounded img-fluid" alt="..." style="height: 300px;">
-			<img src="https://via.placeholder.com/150" class="rounded img-fluid" alt="..." style="height: 300px;">
-			<img src="https://via.placeholder.com/150" class="rounded img-fluid" alt="..." style="height: 300px;">
-			<img src="https://via.placeholder.com/150" class="rounded img-fluid" alt="..." style="height: 300px;">
-			<img src="https://via.placeholder.com/150" class="rounded img-fluid" alt="..." style="height: 300px;">
-			<img src="https://via.placeholder.com/150" class="rounded img-fluid" alt="..." style="height: 300px;">
-		</div>
+		<img src="{% static 'about/about-img.jpg' %}" class="img-fluid" alt="About image">
 	</div>
 	<div class="container my-5">
 		<div class="d-flex flex-column justify-content-center align-items-center">
-			<a href="{% url 'contact_us:contact' %}" class="btn btn-outline-navyblue rounded-pill">Have a question? Let's talk!</a>
+			<a href="{% url 'contact_us:contact' %}" class="btn btn-outline-navyblue rounded-pill">Have a question?
+				Let's talk!</a>
 		</div>
 	</div>
 </div>
