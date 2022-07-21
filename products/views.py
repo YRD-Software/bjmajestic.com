@@ -6,7 +6,7 @@ from .models import Product
 
 
 def index(request):
-	return render(request, 'homepage/index.html')
+	return render(request, 'homepage/index.html', {'page': 'home'})
 
 
 class ProductsView(generic.ListView):
