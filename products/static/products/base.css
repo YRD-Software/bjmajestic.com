@@ -3,10 +3,19 @@
     --majesticblue: #75e6da;
     --bluegrotto: #189ab4;
     --navyblue: #05445e;
-  }
+}
 
 .text-navyblue {
-  color: var(--navyblue);
+    color: var(--navyblue) !important;
+}
+
+a:hover {
+    text-decoration: underline
+}
+
+a {
+    outline: none !important;
+    text-decoration: none;
 }
 
 .bg-lightblue {
@@ -31,7 +40,7 @@
     --bs-btn-hover-color: #fff;
     --bs-btn-hover-bg: var(--navyblue);
     --bs-btn-hover-border-color: var(--navyblue);
-    --bs-btn-focus-shadow-rgb: 25,135,84;
+    --bs-btn-focus-shadow-rgb: 25, 135, 84;
     --bs-btn-active-color: #fff;
     --bs-btn-active-bg: var(--navyblue);
     --bs-btn-active-border-color: var(--navyblue);
@@ -40,4 +49,4 @@
     --bs-btn-disabled-bg: transparent;
     --bs-btn-disabled-border-color: var(--navyblue);
     --bs-gradient: none;
-  }
+}

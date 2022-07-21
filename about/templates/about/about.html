@@ -7,7 +7,7 @@
 {% endblock CSS %}
 
 {% block content %}
-<div class="bg-lightblue pt-5">
+<div class="bg-lightblue py-5">
 	<div class="container py-4 py-xl-5">
 		<div class="row mb-5">
 			<div class="col-md-8 col-xl-6 text-center mx-auto">
@@ -21,26 +21,27 @@
 		</div>
 	</div>
 	<div class="container my-4">
-		<div class="grid" data-masonry='{"percentPosition": true, "itemSelector": ".img-fluid", "columnWidth": 200, "fitWidth": true, "gutter": 0 }'>
+		<div class="grid" data-masonry='{"percentPosition": true, "itemSelector": ".img-fluid", "gutter": 20 }'>
+			<!-- TODO: Fix the horizontal gaps -->
 			<!-- <div class="grid-item">
 				<img src="https://via.placeholder.com/300" class="card-img-top">
 			</div>
 			<div class="grid-item">
 				<img src="https://via.placeholder.com/150" class="card-img-top">
 			</div> -->
-			<img src="https://via.placeholder.com/150" class="rounded img-fluid" alt="...">
-			<img src="https://via.placeholder.com/300" class="rounded img-fluid" alt="...">
-			<img src="https://via.placeholder.com/150" class="rounded img-fluid" alt="...">
-			<img src="https://via.placeholder.com/150" class="rounded img-fluid" alt="...">
-			<img src="https://via.placeholder.com/300" class="rounded img-fluid" alt="...">
-			<img src="https://via.placeholder.com/150" class="rounded img-fluid" alt="...">
-			<img src="https://via.placeholder.com/150" class="rounded img-fluid" alt="...">
-			<img src="https://via.placeholder.com/300" class="rounded img-fluid" alt="...">
-			<img src="https://via.placeholder.com/150" class="rounded img-fluid" alt="...">
+			<img src="https://via.placeholder.com/150" class="rounded img-fluid" alt="..." style="height: 300px;">
+			<img src="https://via.placeholder.com/300" class="rounded img-fluid" alt="..." style="height: 300px;">
+			<img src="https://via.placeholder.com/150" class="rounded img-fluid" alt="..." style="height: 300px;">
+			<img src="https://via.placeholder.com/150" class="rounded img-fluid" alt="..." style="height: 300px;">
+			<img src="https://via.placeholder.com/150" class="rounded img-fluid" alt="..." style="height: 300px;">
+			<img src="https://via.placeholder.com/150" class="rounded img-fluid" alt="..." style="height: 300px;">
+			<img src="https://via.placeholder.com/150" class="rounded img-fluid" alt="..." style="height: 300px;">
 		</div>
 	</div>
-	<div class="container">
-
+	<div class="container my-5">
+		<div class="d-flex flex-column justify-content-center align-items-center">
+			<a href="{% url 'contact_us:contact' %}" class="btn btn-outline-navyblue rounded-pill">Have a question? Let's talk!</a>
+		</div>
 	</div>
 </div>
 {% endblock content %}
