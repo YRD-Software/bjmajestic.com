@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid m-0 p-0 position-relative"">
+<!-- Landing page banner -->
+<div class="container-fluid mb-5 p-0 position-relative"">
 	<div class=" bg-lightblue">
 	<img src="{% static 'products/indexBG.jpg' %}" height=alt="" class="opacity-25 cover-img-crop">
 </div>
@@ -46,63 +47,62 @@
 	</div>
 </div>
 </div>
-<div class="container-fluid" style="height: 400px;">
+<!-- About company cards -->
+<div class="container-fluid">
 	<!-- Cards go here -->
-</div>
-<div class="position-relative container-fluid bg-navyblue" style="height: 500px;">
-	<!-- Meet the team here -->
-	<div class="mt-5 start-50 top-0 position-absolute translate-middle-x col-10 col-xxl-8">
-		<p class="fw-normal"><span class="badge rounded-pill text-bg-majesticblue">Our Team</span></p>
-		<h2 class="text-lightblue fw-light">Meet our talented team</h2>
-		<div class="mb-4">
-			<!-- Team cards -->
-			<div class="row row-cols-3 row-cols-lg-6 g-4">
-				<div class="col">
-					<div class="card">
-						<div class="card-body">
-							This is some text within a card body.
-						</div>
+	<div class="container col-12 col-md-10 col-xxl-8 justify-content-between translate-middle-y">
+		<div class="row row-cols-2">
+			<div class="col">
+				<div class="card h-100 bg-lightblue border-0">
+					<div class="card-body">
+						<h4 class="card-title">Card Title</h4>
+						<p class="card-text">Etiam viverra Magna. Vestibulum sapien consectetuer nostra nisi dapibus, netus eros risus scelerisque nisi massa cras sed conubia quisque. Litora natoque tincidunt morbi venenatis taciti facilisis dapibus curabitur odio augue, malesuada quam erat, curabitur ullamcorper egestas tortor pulvinar semper dictum ridiculus ultrices fames vestibulum lacinia orci auctor sociosqu facilisis duis habitasse quisque senectus vehicula fusce class augue netus platea sociosqu rhoncus nibh lacus Euismod platea consectetuer magnis facilisi lorem egestas interdum dapibus condimentum suspendisse. Odio torquent. In tellus leo fusce fames. Metus morbi a dolor cubilia odio leo, aptent nascetur.</p>
 					</div>
 				</div>
-				<div class="col">
-					<div class="card">
-						<div class="card-body">
-							This is some text within a card body.
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<div class="card-body">
-							This is some text within a card body.
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<div class="card-body">
-							This is some text within a card body.
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<div class="card-body">
-							This is some text within a card body.
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<div class="card-body">
-							This is some text within a card body.
-						</div>
+			</div>
+			<div class="col">
+				<div class="card h-100 bg-lightblue border-0">
+					<div class="card-body">
+						<h4 class="card-title">Card Title</h4>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+							content.</p>
 					</div>
 				</div>
 			</div>
 		</div>
-		<a href="#" class="btn btn-outline-lightblue rounded-pill">Learn more</a>
 	</div>
+</div>
+<!-- Introduce Team -->
+<div class="position-relative container-fluid bg-navyblue p-5">
+	<!-- Meet the team here -->
+		<div class="container col-12 col-md-10 col-xxl-8">
+			<p class="fw-normal"><span class="badge rounded-pill text-bg-majesticblue">Our Team</span></p>
+			<h2 class="text-lightblue fw-light">Meet our talented team</h2>
+			<div class="mb-4">
+				<!-- Team cards -->
+				<div class="row row-cols-1 row-cols-md-6 g-3 justify-content-between">
+					<div class="col">
+						<div class="card h-100">
+							<img src="https://image-placeholder.com/images/actual-size/120x240.png" alt="" class="card-img">
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100">
+							<img src="https://image-placeholder.com/images/actual-size/120x240.png" alt="" class="card-img">
+						</div>
+					</div><div class="col">
+						<div class="card h-100">
+							<img src="https://image-placeholder.com/images/actual-size/120x240.png" alt="" class="card-img">
+						</div>
+					</div><div class="col">
+						<div class="card h-100">
+							<img src="https://image-placeholder.com/images/actual-size/120x240.png" alt="" class="card-img">
+						</div>
+					</div>
+				</div>
+			</div>
+			<a href="#" class="btn btn-outline-lightblue rounded-pill">Learn more</a>
+		</div>
 
 </div>
 {% endblock content %}
