@@ -1,108 +1,114 @@
-{% extends "homepage/base.html" %}
-{% load static %}
-
-{% block content %}
+{% extends "homepage/base.html" %} {% load static %} {% block content %}
 <!-- Landing page banner -->
-<div class="container-fluid mb-5 p-0 position-relative"">
-	<div class=" bg-lightblue">
-	<img src="{% static 'products/indexBG.jpg' %}" height=alt="" class="opacity-25 cover-img-crop">
+<div class="container-fluid position-relative bg-lightblue p-0">
+  <img src="{% static 'products/indexBG.jpg' %}" height="alt"="" class="opacity-25 cover-img-crop" />
+  <div class="container top-0 start-50 translate-middle-x position-absolute text-center col-12 col-sm-10 col-xxl-6">
+    <h1 class="fw-bold mt-4">Beijing Majestic Stationery</h1>
+    <p>
+      An industrial and commercial company specialized in stationery trading.
+    </p>
+    <a class="btn btn-bluegrotto mt-3" href="{% url 'products:products' %}">See Products</a>
+    <div id="carouselExampleIndicators" class="carousel slide mt-4" data-bs-ride="true">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+          aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+          aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://image-placeholder.com/images/actual-size/1680x1050.png" class="carousel-crop" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="https://image-placeholder.com/images/actual-size/1680x1050.png" class="carousel-crop" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="https://image-placeholder.com/images/actual-size/1680x1050.png" class="carousel-crop" alt="..." />
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
 </div>
-<div class="start-50 top-0 position-absolute text-center translate-middle-x mt-5 col-12 col-sm-10 col-xxl-6">
-	<h1 class="fw-bold mt-4">Beijing Majestic Stationery</h1>
-	<p> An industrial and commercial company specialized in stationery trading.</p>
-	<a class="btn btn-bluegrotto mt-3" href="{% url 'products:products' %}">See Products</a>
-	<div id="carouselExampleIndicators" class="carousel slide mt-4" data-bs-ride="true">
-		<div class="carousel-indicators">
-			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-				aria-current="true" aria-label="Slide 1"></button>
-			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-				aria-label="Slide 2"></button>
-			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-				aria-label="Slide 3"></button>
-		</div>
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img src="https://image-placeholder.com/images/actual-size/1680x1050.png" class="carousel-crop"
-					alt="...">
-			</div>
-			<div class="carousel-item">
-				<img src="https://image-placeholder.com/images/actual-size/1680x1050.png" class="carousel-crop"
-					alt="...">
-			</div>
-			<div class="carousel-item">
-				<img src="https://image-placeholder.com/images/actual-size/1680x1050.png" class="carousel-crop"
-					alt="...">
-			</div>
-		</div>
-		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-			data-bs-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			<span class="visually-hidden">Previous</span>
-		</button>
-		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-			data-bs-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span>
-			<span class="visually-hidden">Next</span>
-		</button>
-	</div>
-</div>
-</div>
+
 <!-- About company cards -->
-<div class="container-fluid">
-	<!-- Cards go here -->
-	<div class="container col-12 col-md-10 col-xxl-8 justify-content-between translate-middle-y">
-		<div class="row row-cols-2">
-			<div class="col">
-				<div class="card h-100 bg-lightblue border-0">
-					<div class="card-body">
-						<h4 class="card-title">Card Title</h4>
-						<p class="card-text">Etiam viverra Magna. Vestibulum sapien consectetuer nostra nisi dapibus, netus eros risus scelerisque nisi massa cras sed conubia quisque. Litora natoque tincidunt morbi venenatis taciti facilisis dapibus curabitur odio augue, malesuada quam erat, curabitur ullamcorper egestas tortor pulvinar semper dictum ridiculus ultrices fames vestibulum lacinia orci auctor sociosqu facilisis duis habitasse quisque senectus vehicula fusce class augue netus platea sociosqu rhoncus nibh lacus Euismod platea consectetuer magnis facilisi lorem egestas interdum dapibus condimentum suspendisse. Odio torquent. In tellus leo fusce fames. Metus morbi a dolor cubilia odio leo, aptent nascetur.</p>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card h-100 bg-lightblue border-0">
-					<div class="card-body">
-						<h4 class="card-title">Card Title</h4>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-							content.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="container-fluid py-5">
+  <!-- Cards go here -->
+  <div class="container col-12 col-md-10 col-xxl-8 justify-content-between">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="col">
+        <div class="card h-100 bg-lightblue border-0 p-2">
+          <div class="card-body mb-5">
+            <p class="fw-normal">
+              <span class="badge rounded-pill text-bg-majesticblue">Our Mission</span>
+            </p>
+            <h4 class="card-title fw-bold">Card Title</h4>
+            <p class="card-text">
+              Etiam viverra Magna. Vestibulum sapien consectetuer nostra nisi
+              dapibus, netus eros risus scelerisque nisi massa cras sed conubia
+              quisque. Litora natoque tincidunt morbi venenatis taciti facilisis
+              dapibus curabitur odio augue, malesuada quam erat, curabitur
+              ullamcorper egestas tortor pulvinar semper dictum ridiculus
+              ultrices fames vestibulum lacinia orci auctor sociosqu facilisis
+              duis habitasse quisque senectus vehicula fusce class augue netus
+              platea sociosqu rhoncus nibh lacus.
+            </p>
+          </div>
+          <div class="position-absolute bottom-0 end-0 mx-4 mb-3">
+            <a href="{% url 'about:about' %}" class="btn btn-outline-navyblue rounded-pill">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 bg-lightblue border-0 p-3">
+          <div class="card-body mb-5">
+            <p class="fw-normal">
+              <span class="badge rounded-pill text-bg-majesticblue">Our Expertise</span>
+            </p>
+            <h4 class="card-title fw-bold">Card Title</h4>
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+          </div>
+          <div class="position-absolute bottom-0 end-0 mx-4 mb-3">
+            <a href="{% url 'about:about' %}" class="btn btn-outline-navyblue rounded-pill">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
 <!-- Introduce Team -->
 <div class="position-relative container-fluid bg-navyblue p-5">
-	<!-- Meet the team here -->
-		<div class="container col-12 col-md-10 col-xxl-8">
-			<p class="fw-normal"><span class="badge rounded-pill text-bg-majesticblue">Our Team</span></p>
-			<h2 class="text-lightblue fw-light">Meet our talented team</h2>
-			<div class="mb-4">
-				<!-- Team cards -->
-				<div class="row row-cols-1 row-cols-md-6 g-3 justify-content-between">
-					<div class="col">
-						<div class="card h-100">
-							<img src="https://image-placeholder.com/images/actual-size/120x240.png" alt="" class="card-img">
-						</div>
-					</div>
-					<div class="col">
-						<div class="card h-100">
-							<img src="https://image-placeholder.com/images/actual-size/120x240.png" alt="" class="card-img">
-						</div>
-					</div><div class="col">
-						<div class="card h-100">
-							<img src="https://image-placeholder.com/images/actual-size/120x240.png" alt="" class="card-img">
-						</div>
-					</div><div class="col">
-						<div class="card h-100">
-							<img src="https://image-placeholder.com/images/actual-size/120x240.png" alt="" class="card-img">
-						</div>
-					</div>
-				</div>
-			</div>
-			<a href="#" class="btn btn-outline-lightblue rounded-pill">Learn more</a>
-		</div>
-
+  <!-- Meet the team here -->
+  <div class="container col-12 col-md-10 col-xxl-8">
+    <p class="fw-normal">
+      <span class="badge rounded-pill text-bg-majesticblue">Our Team</span>
+    </p>
+    <h2 class="text-lightblue fw-light">Meet our talented team</h2>
+    <div class="mb-4">
+      <!-- Team cards -->
+      <div class="d-flex flex-wrap justify-content-between">
+        <img src="https://image-placeholder.com/images/actual-size/120x240.png" alt="" class="card m-2 team-img-crop" />
+        <img src="https://image-placeholder.com/images/actual-size/120x150.png" alt="" class="card m-2 team-img-crop" />
+        <img src="https://image-placeholder.com/images/actual-size/120x450.png" alt="" class="card m-2 team-img-crop" />
+        <img src="https://image-placeholder.com/images/actual-size/120x240.png" alt="" class="card m-2 team-img-crop" />
+      </div>
+    </div>
+    <a href="{% url 'about:about' %}" class="btn btn-outline-lightblue rounded-pill">Learn more</a>
+  </div>
 </div>
 {% endblock content %}
