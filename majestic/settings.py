@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 
 
 # Load local .env file
-# NOTE: dotenv_path is only for development. Delete it from production code.
+# WARNING: dotenv_path is only for development. Delete it from production code.
 load_dotenv(dotenv_path='.env.dev')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
