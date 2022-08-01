@@ -1,8 +1,47 @@
 {% extends "homepage/base.html" %} {% load static %} {% block content %}
 
-<div class="text-center">
-  <img src="{% static 'catalog/catalog-bg.jpg' %}" alt="" />
-  <h1>Catalog</h1>
+<div class="position-relative">
+  <img class="catalog-img-crop" src="{% static 'catalog/catalog-bg.jpg' %}" alt="" />
+  <div class="bg-lightblue opacity-75 catalog-img-crop position-absolute top-50 start-50 translate-middle"></div>
+  <div class="position-absolute top-50 start-50 translate-middle text-center">
+    <h1 class="fw-bold text-navyblue">Catalogs</h1>
+    <p>Adipiscing rutrum. Ullamcorper ridiculus potenti facilisis per malesuada ut justo phasellus nisl habitasse
+      hymenaeos nullam leo adipiscing nam. Eu, sapien eleifend feugiat a. Quam. Posuere tristique libero tortor cubilia
+      tincidunt quisque sed mauris tincidunt nibh purus, iaculis, pellentesque eget lorem, magna adipiscing nunc sociis
+      metus viverra. Cursus. Parturient duis dictum mauris donec. </p>
+  </div>
+</div>
+<div class="bg-lightblue p-5">
+  <div class="row row-cols-1 row-cols-md-3 g-3">
+    <div class="col">
+      <div class="card">
+        <div class="card-body text-center">
+          <h1 class="card-title">Year</h1>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body text-center">
+          <h1 class="card-title">Year</h1>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body text-center">
+          <h1 class="card-title">Year</h1>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body text-center">
+          <h1 class="card-title">Year</h1>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 {% endblock content %}
