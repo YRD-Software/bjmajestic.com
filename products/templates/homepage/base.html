@@ -45,7 +45,7 @@
 						</li>
 						<li class="nav-item ms-2">
 							<a class="nav-link text-uppercase {% if 'catalog' == page %}active fw-bold{% endif %}"
-								href="">Catalog</a>
+								href="{% url 'catalog:catalog' %}">Catalog</a>
 						</li>
 					</ul>
 				</div>
@@ -88,7 +88,7 @@
 				<ul class="list-unstyled">
 					<li class="list-group-item mb-4"><a class="text-navyblue" href="{% url 'about:about' %}">About Us</a></li>
 					<li class="list-group-item mb-4"><a class="text-navyblue" href="{% url 'contact_us:contact' %}">Contact Us</a></li>
-					<li class="list-group-item mb-4"><a class="text-navyblue" href="">Catalogs</a></li>
+					<li class="list-group-item mb-4"><a class="text-navyblue" href="{% url 'catalog:catalog' %}">Catalogs</a></li>
 				</ul>
 			</div>
 			<div class="w-100 d-block d-lg-none order-3"></div>
