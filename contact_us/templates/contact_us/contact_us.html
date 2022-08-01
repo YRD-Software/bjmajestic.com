@@ -1,4 +1,5 @@
 {% extends "homepage/base.html" %} {% block content %}
+{% load static %}
 
 <!-- Success or Fail message system -->
 {% if success %}
@@ -34,31 +35,34 @@
 {% endif %}
 {% endif %}
 
-<!-- Contact Form -->
-<div class="card text-dark bg-light m-3 mt-4">
-  <div class="card-header fs-2">Contact Us</div>
-  <div class="card-body">
-    <form method="post" action="{% url 'contact_us:contact' %}">
-      {% csrf_token %}
-      <div class="mb-3">
-        <label for="id_from_email" class="form-label">Email address*</label>
-        <input type="email" name="from_email" class="form-control" required id="id_from_email"
-          aria-describedby="emailHelp" />
-        <div id="emailHelp" class="form-text">
-          We'll never share your email with anyone else.
+<div class="position-relative">
+  <img class="contact-img-crop" src="{% static 'contact_us/contact-bg.jpg' %}" alt="">
+  <div class="container-fluid bg-lightblue p-5 position-absolute bottom-0 start-50 translate-middle-x">
+    <div class="container mb-5">
+      <h1 class="fw-bold text-center">Contact Us</h1>
+    </div>
+    <div class="container col-12 col-md-8 col-xxl-6">
+      <form method="post" action="{% url 'contact_us:contact' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="id_from_email" class="form-label">Email address*</label>
+          <input type="email" name="from_email" class="form-control" required id="id_from_email"
+            aria-describedby="emailHelp" />
+          <div id="emailHelp" class="form-text">
+            We'll never share your email with anyone else.
+          </div>
         </div>
-      </div>
-      <div class="mb-3">
-        <label for="id_subject" class="form-label">Subject*</label>
-        <input type="text" name="subject" class="form-control" required id="id_subject" />
-      </div>
-      <div class="mb-3">
-        <label for="id_message" class="form-label">Message*</label>
-        <textarea name="message" class="form-control" require id="id_message" cols="30" rows="10"></textarea>
-      </div>
-      <button class="btn btn-success" type="submit">Send</button>
-    </form>
+        <div class="mb-3">
+          <label for="id_subject" class="form-label">Subject*</label>
+          <input type="text" name="subject" class="form-control" required id="id_subject" />
+        </div>
+        <div class="mb-3">
+          <label for="id_message" class="form-label">Message*</label>
+          <textarea name="message" class="form-control" require id="id_message" cols="30" rows="10"></textarea>
+        </div>
+        <button class="btn btn-bluegrotto" type="submit">Send</button>
+      </form>
+    </div>
   </div>
 </div>
-
-{% endblock content %}
+  {% endblock content %}
