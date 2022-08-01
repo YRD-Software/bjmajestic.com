@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'products',
     'contact_us',
     'about',
+    'catalog',
     # Cloud storage
     'storages',
     # File cleanup
