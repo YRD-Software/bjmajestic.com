@@ -16,6 +16,17 @@
 <div class="bg-lightblue p-5">
   <div class="container col-10 col-sm-8">
     <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 g-4">
+    {% for catalog in catalogs %}
+    <div class="col">
+      <div class="card mx-5">
+        <img class="catalog-card-crop card-img" src="https://image-placeholder.com/images/actual-size/120x450.png"
+          alt="">
+        <div class="card-img-overlay text-center">
+          <h1 class="card-title text-navyblue">{{ catalog.year }}</h1>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
       <div class="col">
         <div class="card mx-5">
           <img class="catalog-card-crop card-img" src="https://image-placeholder.com/images/actual-size/120x450.png"
