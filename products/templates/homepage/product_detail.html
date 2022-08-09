@@ -38,6 +38,18 @@
       </div>
     </div>
   </div>
-
+  <hr class="my-5">
+  <div class="container mt-5 col-lg-10 col-xxl-8">
+    <div>
+      <h4 class="fw-bold text-navyblue">Similar Products</h4>
+    </div>
+    <div class="row justify-content-center">
+      {% for product in similar_products %}
+      <div class="col">
+        <img src="https://image-placeholder.com/images/actual-size/75x75.png" alt="">
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 {% endblock content %}
