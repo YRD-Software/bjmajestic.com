@@ -20,7 +20,6 @@
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
           aria-label="Slide 4"></button>
       </div>
-      <!-- WARNING: Need to replace dummy image -->
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img src="{% static 'products/index1.jpg' %}" class="carousel-crop" alt="..." />
@@ -97,24 +96,5 @@
 </div>
 
 <!-- Introduce Team -->
-<div class="position-relative container-fluid bg-navyblue p-5">
-  <!-- Meet the team here -->
-  <div class="container col-12 col-md-10 col-xxl-8">
-    <p class="fw-normal">
-      <span class="badge rounded-pill text-bg-majesticblue">Our Team</span>
-    </p>
-    <h2 class="text-lightblue fw-light">Meet our talented team</h2>
-    <div class="mb-4">
-      <!-- Team cards -->
-      <!-- WARNING: Need to replace dummy image -->
-      <div class="d-flex flex-wrap justify-content-between">
-        <img src="https://image-placeholder.com/images/actual-size/120x240.png" alt="" class="card m-2 team-img-crop" />
-        <img src="https://image-placeholder.com/images/actual-size/120x150.png" alt="" class="card m-2 team-img-crop" />
-        <img src="https://image-placeholder.com/images/actual-size/120x450.png" alt="" class="card m-2 team-img-crop" />
-        <img src="https://image-placeholder.com/images/actual-size/120x240.png" alt="" class="card m-2 team-img-crop" />
-      </div>
-    </div>
-    <a href="{% url 'about:about' %}" class="btn btn-outline-lightblue rounded-pill">Learn more</a>
-  </div>
-</div>
+
 {% endblock content %}
