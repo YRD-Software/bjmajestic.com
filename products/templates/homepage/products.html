@@ -12,8 +12,7 @@
 	{% for product in products %}
 	<a href="{% url 'products:product_detail' product.pk %}">
 		<card data-image="{{ product.photo.url }}">
-			<h1 slot="header">{{ product }}</h1>
-			<p slot="content">{{ product.description }}</p>
+			<h1 slot="header">{{ product.name }}</h1>
 		</card>
 	</a>
 	{% empty %}

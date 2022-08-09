@@ -10,7 +10,7 @@ Vue.component('card', {
       <div class="card"
         :style="cardStyle">
         <div class="card-bg" :style="[cardBgTransform, cardBgImage, boxSizing]"></div>
-        <div class="card-info">
+        <div class="card-info w-100">
           <slot name="header"></slot>
           <slot name="content"></slot>
         </div>
