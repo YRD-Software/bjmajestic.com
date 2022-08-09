@@ -13,7 +13,9 @@ def validate_file_extension(value):
     Raises:
         ValidationError: is the file extension is not .pdf or .jpg, raises a validation error
     """
-    if not value.endwith(['.pdf', '.jpg']):
+    import os
+    extension = os.path.splitext(value.name)[1]
+    if not extension in ['.pdf']:
         raise ValidationError(u'Unsupported file extension.')
 
 
