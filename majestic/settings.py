@@ -14,10 +14,6 @@ import os
 from dotenv import load_dotenv
 
 
-# Load local .env file
-# WARNING: dotenv_path is only for development. Delete it from production code.
-load_dotenv(dotenv_path='.env.dev')
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
