@@ -1,20 +1,13 @@
-{% extends "homepage/base.html" %}
-
-{% block CSS %}
-	<style>
-		.center {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-		}
-	</style>
-{% endblock CSS %}
-
-{% block content %}
-	<div class="center text-center">
-		<h1>404</h1>
-		<h3>Oops. Seems like we can't find what you are looking for.</h3>
-		<img src="https://media.giphy.com/media/816QOYrqg1MME/giphy.gif" alt="paint GIF" width="70%">
-	</div>
+{% extends "homepage/base.html" %} {% block content %}
+<div class="container p-5 text-center">
+  <h1>404</h1>
+  <h3>Oops. Seems like we can't find what you are looking for.</h3>
+  <div class="container p-5">
+    <img
+      src="https://media.giphy.com/media/816QOYrqg1MME/giphy.gif"
+      alt="paint GIF"
+      width="70%"
+    />
+  </div>
+</div>
 {% endblock content %}

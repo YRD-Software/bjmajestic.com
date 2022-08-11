@@ -1,20 +1,13 @@
-{% extends "homepage/base.html" %}
-
-{% block CSS %}
-	<style>
-		.center {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-		}
-	</style>
-{% endblock CSS %}
-
-{% block content %}
-	<div class="center text-center">
-		<h1>500</h1>
-		<h1>Oops. Seems like our server is running overtime.</h1>
-		<img src="https://media.giphy.com/media/xT0GqetcAXDkrGkire/giphy.gif" alt="computer GIF" width="70%">
-	</div>
+{% extends "homepage/base.html" %} {% block content %}
+<div class="container p-5 text-center">
+  <h1>500</h1>
+  <h1>Oops. Seems like our server is running overtime.</h1>
+  <div class="container p-5">
+    <img
+      src="https://media.giphy.com/media/xT0GqetcAXDkrGkire/giphy.gif"
+      alt="computer GIF"
+      width="70%"
+    />
+  </div>
+</div>
 {% endblock content %}
