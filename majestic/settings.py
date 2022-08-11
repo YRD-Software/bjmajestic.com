@@ -28,9 +28,9 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 if DEBUG:
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 else:
-    ALLOWED_HOSTS = ['majestic.azurewebsites.net', 'erbfq2dzvb.us-east-2.awsapprunner.com', 'bjmajestic.com', 'www.bjmajestic.com']
+    ALLOWED_HOSTS = ['erbfq2dzvb.us-east-2.awsapprunner.com', 'bjmajestic.com', 'www.bjmajestic.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://majestic.azurewebsites.net', 'https://erbfq2dzvb.us-east-2.awsapprunner.com', 'https://bjmajestic.com', 'https://www.bjmajestic.com']
+CSRF_TRUSTED_ORIGINS = ['https://erbfq2dzvb.us-east-2.awsapprunner.com', 'https://bjmajestic.com', 'https://www.bjmajestic.com']
 
 # Application definition
 
