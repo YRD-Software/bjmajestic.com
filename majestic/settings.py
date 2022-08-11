@@ -160,7 +160,9 @@ elif os.environ.get('USE_S3') == 'True':
     """ Configure S3 storage for static and media files.
     """
     # TODO: add S3 storage settings
-    pass
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = "bjmajestic-assets"
 else:
     """Configure local storage for static and media files.
     """
