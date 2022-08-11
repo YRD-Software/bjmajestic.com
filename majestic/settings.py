@@ -30,7 +30,7 @@ if DEBUG:
 else:
     ALLOWED_HOSTS = ['majestic.azurewebsites.net', 'erbfq2dzvb.us-east-2.awsapprunner.com', 'bjmajestic.com', 'www.bjmajestic.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://majestic.azurewebsites.net', 'erbfq2dzvb.us-east-2.awsapprunner.com', 'bjmajestic.com', 'www.bjmajestic.com']
+CSRF_TRUSTED_ORIGINS = ['https://majestic.azurewebsites.net', 'https://erbfq2dzvb.us-east-2.awsapprunner.com', 'https://bjmajestic.com', 'https://www.bjmajestic.com']
 
 # Application definition
 
