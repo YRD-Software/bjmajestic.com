@@ -148,10 +148,7 @@ USE_TZ = True
 
 
 # Assets setting (static files and image files)
-
-USE_AZURE = os.environ.get('USE_AZURE') == 'True'
-
-if USE_AZURE:
+if os.environ.get('USE_AZURE') == 'True':
     """Configure Azure storage for static and media files.
     """
     DEFAULT_FILE_STORAGE = 'majestic.custom_storage.MediaAzureStorage'
@@ -159,6 +156,11 @@ if USE_AZURE:
     AZURE_ACCOUNT_NAME = os.environ.get('AZURE_ACCOUNT_NAME')
     AZURE_ACCOUNT_KEY = os.environ.get('AZURE_ACCOUNT_KEY')
     AZURE_OVERWRITE_FILES = True
+elif os.environ.get('USE_S3') == 'True':
+    """ Configure S3 storage for static and media files.
+    """
+    # TODO: add S3 storage settings
+    pass
 else:
     """Configure local storage for static and media files.
     """
