@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 from dotenv import load_dotenv
 
+load_dotenv(".env.dev")
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -27,6 +29,8 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 if DEBUG:
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+elif os.environ.get("TESTING", "") == "True":
+    ALLOWED_HOSTS = ['*']
 else:
     ALLOWED_HOSTS = ['erbfq2dzvb.us-east-2.awsapprunner.com', 'bjmajestic.com', 'www.bjmajestic.com']
 
@@ -160,9 +164,12 @@ elif os.environ.get('USE_S3') == 'True':
     """ Configure S3 storage for static and media files.
     """
     # TODO: add S3 storage settings
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
     AWS_STORAGE_BUCKET_NAME = "bjmajestic-assets"
+    AWS_S3_CUSTOM_DOMAIN = "d1sdjhthd63i4o.cloudfront.net"
 else:
     """Configure local storage for static and media files.
     """
