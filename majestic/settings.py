@@ -163,7 +163,6 @@ if os.environ.get('USE_AZURE') == 'True':
 elif os.environ.get('USE_S3') == 'True':
     """ Configure S3 storage for static and media files.
     """
-    # TODO: add S3 storage settings
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
