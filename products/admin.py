@@ -1,10 +1,11 @@
 from django.contrib import admin
 
-from .models import Product, ProductPhoto
+from .models import Product, ProductPhoto, Category, Tag
 
 
 class DetailPhotosInline(admin.TabularInline):
     """Allow admin to edit ProductPhoto objects through Product admin page."""
+    verbose_name = 'Detailed Product Photo'
     model = ProductPhoto
     extra = 2
 
@@ -12,13 +13,13 @@ class DetailPhotosInline(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     """Define how the Products page in admin is going to look."""
     fieldsets = [
-        (None, {'fields': ['name']}),
-        ('Details', {'fields': ['description', ]}),
-        ('Main Image', {'fields': ['photo']}),
+        ("PRODUCT INFO", {'fields': ['name', "description", "category", "tag"]}),
+        ('MAIN PRODUCT PHOTO', {'fields': ['photo']}),
     ]
     inlines = [DetailPhotosInline]
-    list_display = ('name',)
-    search_fields = ['name']
+    list_display = ('name', 'category',)
+    search_fields = ['name', 'category']
+    list_filter = ['category', 'tag']
 
 
 class ProductPhotoAdmin(admin.ModelAdmin):
@@ -31,3 +32,5 @@ class ProductPhotoAdmin(admin.ModelAdmin):
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(ProductPhoto, ProductPhotoAdmin)
+admin.site.register(Category)
+admin.site.register(Tag)
