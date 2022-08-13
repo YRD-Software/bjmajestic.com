@@ -27,7 +27,7 @@ class Product(models.Model):
     name = models.CharField('product', max_length=30)
     description = models.TextField()
     photo = models.ImageField(upload_to='product_images/')
-    category = models.ForeignKey(Category, on_delete=models.RESTRICT)
+    category = models.ForeignKey(Category, on_delete=models.RESTRICT, blank=True, null=True)
     tag = models.ManyToManyField(Tag)
 
     def __str__(self):
