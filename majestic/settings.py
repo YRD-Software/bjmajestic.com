@@ -34,9 +34,11 @@ if DEBUG:
 elif env.bool("TESTING"):
     ALLOWED_HOSTS = ['*']
 else:
-    ALLOWED_HOSTS = ['erbfq2dzvb.us-east-2.awsapprunner.com', 'bjmajestic.com', 'www.bjmajestic.com']
+    ALLOWED_HOSTS = ['erbfq2dzvb.us-east-2.awsapprunner.com',
+                     'bjmajestic.com', 'www.bjmajestic.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://erbfq2dzvb.us-east-2.awsapprunner.com', 'https://bjmajestic.com', 'https://www.bjmajestic.com']
+CSRF_TRUSTED_ORIGINS = ['https://erbfq2dzvb.us-east-2.awsapprunner.com',
+                        'https://bjmajestic.com', 'https://www.bjmajestic.com']
 
 # Application definition
 
@@ -168,14 +170,11 @@ if USE_STORAGE == "s3":
     # Static files
     AWS_LOCATION = 'static'
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
-    STATICFILES_STORAGE = 'majestic.custom_storage.StaticS3Storage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
     # Public media files
     PUBLIC_MEDIA_LOCATION = 'media'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-    DEFAULT_FILE_STORAGE = 'majestic.custom_storage.PublicMediaS3Storage'
-    # Private media files
-    Private_MEDIA_LOCATION = 'private'
-    PRIVATE_FILE_STORAGE = 'majestic.custom_storage.PrivateMediaS3Storage'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 else:
     """Configure local storage for static and media files.
     """
