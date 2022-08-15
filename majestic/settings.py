@@ -180,6 +180,9 @@ elif USE_STORAGE == "s3":
     PUBLIC_MEDIA_LOCATION = 'media'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
     DEFAULT_FILE_STORAGE = 'majestic.custom_storage.PublicMediaS3Storage'
+    # Private media files
+    Private_MEDIA_LOCATION = 'private'
+    PRIVATE_FILE_STORAGE = 'majestic.custom_storage.PrivateMediaS3Storage'
 else:
     """Configure local storage for static and media files.
     """
