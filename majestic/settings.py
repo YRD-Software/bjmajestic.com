@@ -157,21 +157,14 @@ USE_TZ = True
 USE_STORAGE = env.str("USE_STORAGE")
 
 # Assets setting (static files and image files)
-if USE_STORAGE == "azure":
-    """Configure Azure storage for static and media files.
-    """
-    DEFAULT_FILE_STORAGE = 'majestic.custom_storage.MediaAzureStorage'
-    STATICFILES_STORAGE = 'majestic.custom_storage.StaticAzureStorage'
-    AZURE_ACCOUNT_NAME = env.str('AZURE_ACCOUNT_NAME')
-    AZURE_ACCOUNT_KEY = env.str('AZURE_ACCOUNT_KEY')
-    AZURE_OVERWRITE_FILES = True
-elif USE_STORAGE == "s3":
+if USE_STORAGE == "s3":
     """ Configure S3 storage for static and media files.
     """
     AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY')
     AWS_STORAGE_BUCKET_NAME = env.str('AWS_STORAGE_BUCKET_NAME')
     AWS_S3_CUSTOM_DOMAIN = env.str('AWS_S3_CUSTOM_DOMAIN')
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
     # Static files
     AWS_LOCATION = 'static'
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
