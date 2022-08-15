@@ -162,24 +162,24 @@ if USE_STORAGE == "azure":
     """
     DEFAULT_FILE_STORAGE = 'majestic.custom_storage.MediaAzureStorage'
     STATICFILES_STORAGE = 'majestic.custom_storage.StaticAzureStorage'
-    AZURE_ACCOUNT_NAME = os.environ.get('AZURE_ACCOUNT_NAME')
-    AZURE_ACCOUNT_KEY = os.environ.get('AZURE_ACCOUNT_KEY')
+    AZURE_ACCOUNT_NAME = env.str('AZURE_ACCOUNT_NAME')
+    AZURE_ACCOUNT_KEY = env.str('AZURE_ACCOUNT_KEY')
     AZURE_OVERWRITE_FILES = True
 elif USE_STORAGE == "s3":
     """ Configure S3 storage for static and media files.
     """
-    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-    AWS_STORAGE_BUCKET_NAME = "bjmajestic-assets"
-    AWS_S3_CUSTOM_DOMAIN = "d1sdjhthd63i4o.cloudfront.net"
+    AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = env.str('AWS_STORAGE_BUCKET_NAME')
+    AWS_S3_CUSTOM_DOMAIN = env.str('AWS_S3_CUSTOM_DOMAIN')
     # Static files
     AWS_LOCATION = 'static'
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
-    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+    STATICFILES_STORAGE = 'majestic.custom_storage.StaticS3Storage'
     # Public media files
     PUBLIC_MEDIA_LOCATION = 'media'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    DEFAULT_FILE_STORAGE = 'majestic.custom_storage.PublicMediaS3Storage'
 else:
     """Configure local storage for static and media files.
     """
