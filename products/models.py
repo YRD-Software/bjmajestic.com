@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 
+from majestic.custom_storage import PublicMediaS3Storage
+
 
 # Create your models here.
 
@@ -26,7 +28,7 @@ class Product(models.Model):
     """A description for a product"""
     name = models.CharField('product', max_length=30)
     description = models.TextField()
-    photo = models.ImageField(upload_to='product_images/')
+    photo = models.ImageField(upload_to='product_images/', storage=PublicMediaS3Storage())
     category = models.ForeignKey(Category, on_delete=models.RESTRICT, blank=True, null=True)
     tag = models.ManyToManyField(Tag)
 
@@ -41,7 +43,7 @@ class Product(models.Model):
 class ProductPhoto(models.Model):
     """Extra detailed photos of the product."""
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    detail_photo = models.ImageField(upload_to='detail_product_images/')
+    detail_photo = models.ImageField(upload_to='detail_product_images/', storage=PublicMediaS3Storage())
 
     def __str__(self):
         """Return string rep for ProductPhoto."""

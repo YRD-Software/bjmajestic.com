@@ -1,6 +1,8 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 
+from majestic.custom_storage import PublicMediaS3Storage
+
 # Create your models here.
 
 
@@ -27,4 +29,4 @@ class Catalog(models.Model):
     """
     year = models.SmallIntegerField(unique=True)
     file = models.FileField(upload_to='catalogs/%Y/',
-                            validators=[validate_file_extension])
+                            validators=[validate_file_extension], storage=PublicMediaS3Storage())
