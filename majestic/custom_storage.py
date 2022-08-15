@@ -32,4 +32,11 @@ class PublicMediaS3Storage(S3Boto3Storage):
     """
     location = 'media'
     default_acl = 'public-read'
-    file_overwrite = True
+    file_overwrite = False
+    
+class PrivateMediaS3Storage(S3Boto3Storage):
+    """PrivateMediaS3Storage: Configure S3 storage for private media files.
+    """
+    location = 'private'
+    default_acl = 'private'
+    file_overwrite = False
