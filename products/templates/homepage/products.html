@@ -7,11 +7,12 @@
     <div class="col-3 px-0">
       <div class="sticky-filter mb-4">
         <div class="bg-bluegrotto w-75 p-4 text-light rounded-5">
-          <form>
+          <form method="post" action="{% url 'products:products' %}">
+            {% csrf_token %}
             <h6 class="fw-bold">Category</h6>
             {% for category in categories %}
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="{{ category }}" id="flexCheck-{{ category }}" />
+              <input name="{{ category.id }}" class="form-check-input" type="checkbox" id="{{ category }}" />
               <label class="form-check-label" for="flexCheck-{{ category }}"> {{ category }} </label>
             </div>
             {% endfor %}
