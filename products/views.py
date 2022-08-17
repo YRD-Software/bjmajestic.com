@@ -1,7 +1,7 @@
 from django.views import generic
 from django.http import HttpResponse
 from django import forms
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Category, Product, Tag
 
 # Create your views here.
@@ -33,8 +33,8 @@ class ProductsView(generic.ListView):
     def post(self, request): # TODO: Make this work.
         form = forms.Form(request.POST)
         if form.is_valid():
-            print(form.cleaned_data)
-        return HttpResponse("Posted successfully")
+            print(form.data)
+        return redirect('products:products')
 
 
 class DetailProductView(generic.DetailView):
