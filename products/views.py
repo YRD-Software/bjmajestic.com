@@ -1,6 +1,8 @@
 from django.views import generic
+from django.http import HttpResponse
+from django import forms
 from django.shortcuts import render
-from .models import Category, Product
+from .models import Category, Product, Tag
 
 # Create your views here.
 
@@ -14,14 +16,25 @@ class ProductsView(generic.ListView):
     template_name = 'homepage/products.html'
     model = Product
 
-    # Define context to be passed to template
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_categories(self):
+        """Get all the categories."""
+        return Category.objects.all()
+
+    def get_tags(self):
+        """Get all the tags."""
+        return Tag.objects.all()
+
+    def get_context_data(self, *args, object_list=None, **kwargs):
+        """Get the context data."""
         context = {'page': 'product', 'products': self.get_queryset(
-        ), 'categories': self.get_categories()}
+        ), 'categories': self.get_categories(), 'tags': self.get_tags()}
         return context
 
-    def get_categories(self):
-        return Category.objects.all()
+    def post(self, request): # TODO: Make this work.
+        form = forms.Form(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+        return HttpResponse("Posted successfully")
 
 
 class DetailProductView(generic.DetailView):
