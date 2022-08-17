@@ -1,7 +1,6 @@
 from django.core.mail import send_mail, BadHeaderError
-from django.http.response import HttpResponse
 from contact_us.forms import ContactForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 from django.conf import settings
 
