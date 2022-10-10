@@ -11,7 +11,11 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from dotenv import load_dotenv
+from better_pyenv import Env
+
+# Read environment variables from .env file
+env = Env()
+env.read_env(".env.dev", recurse=False)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,17 +24,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+DEBUG = env.bool("DJANGO_DEBUG", default=False)
 
 if DEBUG:
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+elif env.bool("TESTING"):
+    ALLOWED_HOSTS = ['*']
 else:
-    ALLOWED_HOSTS = ['majestic.azurewebsites.net', 'erbfq2dzvb.us-east-2.awsapprunner.com', 'bjmajestic.com', 'www.bjmajestic.com']
+    ALLOWED_HOSTS = ['erbfq2dzvb.us-east-2.awsapprunner.com',
+                     'bjmajestic.com', 'www.bjmajestic.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://majestic.azurewebsites.net', 'https://erbfq2dzvb.us-east-2.awsapprunner.com', 'https://bjmajestic.com', 'https://www.bjmajestic.com']
+CSRF_TRUSTED_ORIGINS = ['https://erbfq2dzvb.us-east-2.awsapprunner.com',
+                        'https://bjmajestic.com', 'https://www.bjmajestic.com']
 
 # Application definition
 
@@ -88,19 +96,21 @@ WSGI_APPLICATION = 'majestic.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 # Superuser initialization variables
-SUPERUSER_USERNAME = os.environ.get('SUPERUSER_USERNAME')
-SUPERUSER_PASSWORD = os.environ.get('SUPERUSER_PASSWORD')
+SUPERUSER_USERNAME = env.str("SUPERUSER_USERNAME")
+SUPERUSER_PASSWORD = env.str("SUPERUSER_PASSWORD")
 
-if os.environ.get('USE_POSTGRES') == 'True':
+USE_POSTGRESQL = env.bool("USE_POSTGRESQL", default=False)
+
+if USE_POSTGRESQL:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.environ.get('POSTGRES_DBNAME'),
+            "NAME": env.str('POSTGRES_DBNAME'),
             "USER": "postgres",
-            "PASSWORD": os.environ.get('POSTGRES_PASSWORD'),
+            "PASSWORD": env.str('POSTGRES_PASSWORD'),
             # set in docker-compose.yml
-            "HOST": os.environ.get('POSTGRES_DBHOST'),
-            "PORT": os.environ.get('POSTGRES_DBPORT'),  # default postgres port
+            "HOST": env.str('POSTGRES_DBHOST'),
+            "PORT": env.str('POSTGRES_DBPORT'),  # default postgres port
         }
     }
 else:
@@ -146,19 +156,25 @@ USE_L10N = True
 
 USE_TZ = True
 
+USE_STORAGE = env.str("USE_STORAGE")
 
 # Assets setting (static files and image files)
-
-USE_AZURE = os.environ.get('USE_AZURE') == 'True'
-
-if USE_AZURE:
-    """Configure Azure storage for static and media files.
+if USE_STORAGE == "s3":
+    """ Configure S3 storage for static and media files.
     """
-    DEFAULT_FILE_STORAGE = 'majestic.custom_storage.MediaAzureStorage'
-    STATICFILES_STORAGE = 'majestic.custom_storage.StaticAzureStorage'
-    AZURE_ACCOUNT_NAME = os.environ.get('AZURE_ACCOUNT_NAME')
-    AZURE_ACCOUNT_KEY = os.environ.get('AZURE_ACCOUNT_KEY')
-    AZURE_OVERWRITE_FILES = True
+    AWS_S3_ACCESS_KEY_ID = env.str('AWS_S3_ACCESS_KEY_ID')
+    AWS_S3_SECRET_ACCESS_KEY = env.str('AWS_S3_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = env.str('AWS_STORAGE_BUCKET_NAME')
+    AWS_S3_CUSTOM_DOMAIN = env.str('AWS_S3_CUSTOM_DOMAIN')
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    # Static files
+    AWS_LOCATION = 'static'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+    # Public media files
+    PUBLIC_MEDIA_LOCATION = 'media'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 else:
     """Configure local storage for static and media files.
     """
@@ -170,17 +186,17 @@ else:
     MEDIA_URL = '/media/'
 
 # Email settings
-USE_SMTP = os.environ.get('USE_SMTP') == 'True'
+USE_SMTP = env.bool('USE_SMTP')
 
 if USE_SMTP:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
+    DEFAULT_FROM_EMAIL = env.str('DEFAULT_FROM_EMAIL')
     EMAIL_HOST = 'smtp.sendgrid.net'
-    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+    EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD')
     EMAIL_PORT = '465'
     EMAIL_USE_SSL = True
-    DEFAULT_TO_EMAIL = os.environ.get('DEFAULT_TO_EMAIL')
+    DEFAULT_TO_EMAIL = env.str('DEFAULT_TO_EMAIL')
 else:
     DEFAULT_FROM_EMAIL = 'contact@example.com'
     DEFAULT_TO_EMAIL = 'manager@example.com'

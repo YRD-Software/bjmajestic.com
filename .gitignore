@@ -1,8 +1,8 @@
 # Local Environment
-/cw_env/
 /venv/
 __pycache__/
 .env*
+.dccache
 
 # IDEs
 /.vscode/
