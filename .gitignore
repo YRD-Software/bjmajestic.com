@@ -1,6 +1,5 @@
 # Local Environment
-/cw_env/
-/venv/
+.python-version
 __pycache__/
 .env*
 
