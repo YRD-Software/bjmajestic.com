@@ -154,17 +154,14 @@ USE_TZ = True
 
 USE_AZURE = os.environ.get('USE_AZURE') == 'True'
 
+# Configure Azure storage for static and media files.
 if USE_AZURE:
-    """Configure Azure storage for static and media files.
-    """
     DEFAULT_FILE_STORAGE = 'majestic.custom_storage.MediaAzureStorage'
     STATICFILES_STORAGE = 'majestic.custom_storage.StaticAzureStorage'
     AZURE_ACCOUNT_NAME = os.environ.get('AZURE_ACCOUNT_NAME')
     AZURE_ACCOUNT_KEY = os.environ.get('AZURE_ACCOUNT_KEY')
     AZURE_OVERWRITE_FILES = True
-else:
-    """Configure local storage for static and media files.
-    """
+else: # Configure local storage for static and media files.
     # Static files
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
     STATIC_URL = '/static/'
