@@ -94,16 +94,16 @@ WSGI_APPLICATION = 'majestic.wsgi.application'
 SUPERUSER_USERNAME = os.environ.get('SUPERUSER_USERNAME')
 SUPERUSER_PASSWORD = os.environ.get('SUPERUSER_PASSWORD')
 
-if os.environ.get('USE_POSTGRES') == 'True':
+if os.environ.get('USE_MYSQL') == 'True':
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.environ.get('POSTGRES_DBNAME'),
-            "USER": "postgres",
-            "PASSWORD": os.environ.get('POSTGRES_PASSWORD'),
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": os.environ.get('DATABASE_NAME'),
+            "USER": os.environ.get('DATABASE_USER'),
+            "PASSWORD": os.environ.get('DATABASE_PASSWORD'),
             # set in docker-compose.yml
-            "HOST": os.environ.get('POSTGRES_DBHOST'),
-            "PORT": os.environ.get('POSTGRES_DBPORT'),  # default postgres port
+            "HOST": os.environ.get('DATABASE_HOST'),
+            "PORT": os.environ.get('DATABASE_PORT'),  # default postgres port
         }
     }
 else:
