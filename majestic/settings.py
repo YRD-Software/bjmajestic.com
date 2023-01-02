@@ -103,7 +103,10 @@ if os.environ.get('USE_MYSQL') == 'True':
             "PASSWORD": os.environ.get('DATABASE_PASSWORD'),
             # set in docker-compose.yml
             "HOST": os.environ.get('DATABASE_HOST'),
-            "PORT": os.environ.get('DATABASE_PORT'),  # default postgres port
+            "PORT": os.environ.get('DATABASE_PORT'),
+            "OPTIONS": {
+                "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
+            },
         }
     }
 else:
