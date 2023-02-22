@@ -20,6 +20,6 @@ s3transfer==0.6.0
 six==1.16.0
 smmap==5.0.0
 sqlparse==0.4.3
-stevedore==4.0.0
+stevedore==5.0.0
 toml==0.10.2
 urllib3==1.26.11
