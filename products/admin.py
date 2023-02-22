@@ -1,3 +1,4 @@
+""" Admin configuration for products app. """
 from django.contrib import admin
 
 from .models import Product, ProductPhoto
