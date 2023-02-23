@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+
 import os
 from dotenv import load_dotenv
 
@@ -28,11 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-if DEBUG:
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-else:
-    ALLOWED_HOSTS = [""] # TODO: Need to fill
-
+ALLOWED_HOSTS = ['localhost', '127.0.0.1'] if DEBUG else [""]
 CSRF_TRUSTED_ORIGINS = ['https://bjmajestic.com', 'https://www.bjmajestic.com']
 
 # Application definition
@@ -43,8 +40,6 @@ INSTALLED_APPS = [
     'contact_us',
     'about',
     'catalog',
-    # Cloud storage
-    'storages',
     # File cleanup
     'django_cleanup',
     # Django Apps
@@ -155,22 +150,12 @@ USE_TZ = True
 
 # Assets setting (static files and image files)
 
-USE_AZURE = os.environ.get('USE_AZURE') == 'True'
-
-# Configure Azure storage for static and media files.
-if USE_AZURE:
-    DEFAULT_FILE_STORAGE = 'majestic.custom_storage.MediaAzureStorage'
-    STATICFILES_STORAGE = 'majestic.custom_storage.StaticAzureStorage'
-    AZURE_ACCOUNT_NAME = os.environ.get('AZURE_ACCOUNT_NAME')
-    AZURE_ACCOUNT_KEY = os.environ.get('AZURE_ACCOUNT_KEY')
-    AZURE_OVERWRITE_FILES = True
-else:  # Configure local storage for static and media files.
-    # Static files
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
-    STATIC_URL = '/static/'
-    # Media files
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-    MEDIA_URL = '/media/'
+# Static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+STATIC_URL = '/static/'
+# Media files
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
 
 # Email settings
 USE_SMTP = os.environ.get('USE_SMTP') == 'True'
