@@ -12,7 +12,7 @@ class Product(models.Model):
 
     def __str__(self):
         """Return a string rep. of the model"""
-        return self.name
+        return str(self.name)
 
     def get_absolute_url(self):
         return reverse('products:products')
