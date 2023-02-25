@@ -9,6 +9,7 @@ python-dotenv = "*"
 django-cleanup = "*"
 pillow = "*"
 "django4.0-oss-storage" = "*"
+mysqlclient = "*"
 
 [dev-packages]
 pylint = "*"
