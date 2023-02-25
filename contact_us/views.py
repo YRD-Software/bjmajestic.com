@@ -19,8 +19,12 @@ def contact_us(request):
             from_email = form.cleaned_data['from_email']
             message = form.cleaned_data['message']
             try:
-                send_mail(subject, "From " + from_email + "\n" + message,
-                          settings.DEFAULT_FROM_EMAIL, [settings.DEFAULT_TO_EMAIL])
+                send_mail(
+                    subject,
+                    f"From {from_email}" + "\n" + message,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [settings.DEFAULT_TO_EMAIL],
+                )
                 success = "Success! Thank you for your message. We will get back to you as soon as possible."
             except BadHeaderError:
                 success = "Invalid header found."

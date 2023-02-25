@@ -174,7 +174,7 @@ USE_SMTP = os.environ.get('USE_SMTP') == 'True'
 if USE_SMTP:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
-    EMAIL_HOST = 'smtp.sendgrid.net'
+    EMAIL_HOST = 'smtpdm.aliyun.com'
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
     EMAIL_PORT = '465'
