@@ -8,6 +8,7 @@ django = "*"
 python-dotenv = "*"
 django-cleanup = "*"
 pillow = "*"
+"django4.0-oss-storage" = "*"
 
 [dev-packages]
 pylint = "*"
