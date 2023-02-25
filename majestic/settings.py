@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'contact_us',
     'about',
     'catalog',
+    # Cloud storage
+    'django_oss_storage',
     # File cleanup
     'django_cleanup',
     # Django Apps
@@ -150,11 +152,20 @@ USE_TZ = True
 
 # Assets setting (static files and image files)
 
-# Static files
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+if os.environ.get('USE_OSS') == 'True':
+    DEFAULT_FILE_STORAGE = 'django_oss_storage.backends.OssMediaStorage'
+    STATICFILES_STORAGE = 'django_oss_storage.backends.OssStaticStorage'
+    OSS_ACCESS_KEY_ID = os.environ.get('OSS_ACCESS_KEY_ID')
+    OSS_ACCESS_KEY_SECRET = os.environ.get('OSS_ACCESS_KEY_SECRET')
+    OSS_BUCKET_NAME = os.environ.get('OSS_BUCKET_NAME')
+    OSS_ENDPOINT = os.environ.get('OSS_ENDPOINT')
+else:
+    # Static files
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+    # Media files
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 STATIC_URL = '/static/'
-# Media files
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
 
 # Email settings
