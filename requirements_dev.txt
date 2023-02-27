@@ -1,4 +1,4 @@
-asgiref==3.5.2
+asgiref==3.6.0
 autopep8==2.0.1
 better-pyenv==9.5.0
 boto3==1.24.51
