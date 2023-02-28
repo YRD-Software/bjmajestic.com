@@ -36,7 +36,10 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 # SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG
 # SECURE_HSTS_PRELOAD = not DEBUG
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1'] if DEBUG else [""] # NOTE: Add allowed hosts here
+# 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
+# For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
+ALLOWED_HOSTS = ['localhost', '127.0.0.1'] if DEBUG else os.environ.get(
+    'DJANGO_ALLOWED_HOSTS').split(' ')
 CSRF_TRUSTED_ORIGINS = ['https://bjmajestic.com', 'https://www.bjmajestic.com']
 
 # Application definition
