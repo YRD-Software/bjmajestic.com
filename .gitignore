@@ -1,6 +1,7 @@
 # Local Environment
 .python-version
 __pycache__/
+venv/
 .env*
 *.pem
 
