@@ -10,6 +10,7 @@ django-cleanup = "*"
 pillow = "*"
 "django4.0-oss-storage" = "*"
 mysqlclient = "*"
+gunicorn = "*"
 
 [dev-packages]
 pylint = "*"
