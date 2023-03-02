@@ -4,6 +4,7 @@ __pycache__/
 venv/
 .env*
 *.pem
+nginx.conf
 
 # IDEs
 /.vscode/
