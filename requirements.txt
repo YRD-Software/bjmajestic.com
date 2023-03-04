@@ -5,7 +5,7 @@ certifi==2022.12.7 ; python_version >= '3.6'
 cffi==1.15.1
 charset-normalizer==3.0.1
 crcmod==1.7
-cryptography==39.0.1 ; python_version >= '3.6'
+cryptography==39.0.2 ; python_version >= '3.6'
 django==4.1.7
 django-cleanup==7.0.0
 django4.0-oss-storage==1.2.0

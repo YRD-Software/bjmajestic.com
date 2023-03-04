@@ -13,8 +13,8 @@ mysqlclient = "*"
 gunicorn = "*"
 
 [dev-packages]
-pylint = "*"
-autopep8 = "*"
+flake8 = "*"
+black = "*"
 
 [requires]
 python_version = "3.11"
