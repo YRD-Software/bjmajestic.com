@@ -1,10 +1,11 @@
 # Local Environment
 .python-version
-__pycache__/
+**/__pycache__/
 venv/
 .env*
 *.pem
 nginx.conf
+migrations/
 
 # IDEs
 /.vscode/
