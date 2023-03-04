@@ -42,7 +42,7 @@ SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
 ALLOWED_HOSTS = ['localhost', '127.0.0.1'] if DEBUG else os.environ.get(
     'DJANGO_ALLOWED_HOSTS').split(' ')
-CSRF_TRUSTED_ORIGINS = ["*"] if DEBUG else os.environ.get('CSRF_TRUSTED_ORIGINS').split(' ')
+CSRF_TRUSTED_ORIGINS = ["http://*"] if DEBUG else os.environ.get('CSRF_TRUSTED_ORIGINS').split(' ')
 
 # Application definition
 
