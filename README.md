@@ -1,25 +1,53 @@
 
 # Majestic Web
 
-## Get Started
+## Developer's Guide
 
-### Developing on local environment
+**Required:**
+- Pipenv
+- Pyenv
 
-`pip install -r requirements.txt`
+### Local development
+`pipenv install`
 
-### Developing using Docker Compose
-`docker-compose up -f docker-compose.dev.yml`
+---
 
-## Docker Compose Files
+## Deployment
 
-The project's docker compose files are divided into two categories: **production** and **development**. 
-- Production: [docker-compose.yml](https://github.com/frankjlin16/majesticWebDev/blob/main/docker-compose.yml)
-- Development: [docker-compose.dev.yml](https://github.com/frankjlin16/majesticWebDev/blob/main/docker-compose.dev.yml)
+### Environment variables
+```properties
+# Django Settings variables
+DJANGO_DEBUG=<True/False>
+SECRET_KEY=<Django's secrete key>
+DJANGO_ALLOWED_HOSTS=<IP address or domain>
 
-## SSH Configuration for Azure
+# Storage environment variables
+USE_OSS=<True/False>
+OSS_ACCESS_KEY_ID=<key id>
+OSS_ACCESS_KEY_SECRET=<secret key>
+OSS_BUCKET_NAME=<bucket name>
+OSS_ENDPOINT=<host or endpoint>
 
-The files [sshd_config](https://github.com/frankjlin16/majesticWebDev/blob/main/sshd_config) and [ssh_setup.sh](https://github.com/frankjlin16/majesticWebDev/blob/main/ssh_setup.sh) are files that enbles SSH feature for container running on Azure.
+# Contact Us email environment variables
+USE_SMTP=<True/False>
+DEFAULT_FROM_EMAIL=<default from email>
+DEFAULT_TO_EMAIL=<default to email>
+EMAIL_HOST=<host>
+EMAIL_PORT=<port: 80 or 443 (SSL)>
+EMAIL_HOST_USER=<host username>
+EMAIL_HOST_PASSWORD=<host password>
 
-## Azure Container Startup File
+# MySQL Database
+USE_MYSQL=<True/False>
+DATABASE_NAME=<database name>
+DATABASE_USER=<database username>
+DATABASE_PASSWORD=<database password>
+DATABASE_HOST=<Database host>
+DATABASE_PORT=<MYSQL port: default is 3306>
 
-The file [startup.txt](https://github.com/frankjlin16/majesticWebDev/blob/main/startup.txt) contains the commands that will be executed when starting Azure container.
+# Superuser initialization environment variables (python manage.py initadmin)
+SUPERUSER_USERNAME=<username>
+SUPERUSER_PASSWORD=<password>
+```
+
+> This project uses the Gunicorn and Nginx server tech stack
