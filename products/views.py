@@ -1,32 +1,46 @@
 from django.views import generic
 from django.shortcuts import render
-from .models import Product
+from .models import Product, Category
 
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'homepage/index.html', {'page': 'home'})
+    return render(request, "homepage/index.html", {"page": "home"})
 
 
 class ProductsView(generic.ListView):
     """A list of all the products."""
-    template_name = 'homepage/products.html'
+
+    template_name = "homepage/products.html"
     model = Product
-    context_object_name = 'products'
 
     # Define context to be passed to template
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['page'] = 'product'
+        context["page"] = "product"
+        # If a category is specified, filter products by that category
+        if self.kwargs.get("category"):
+            context["products"] = Product.objects.filter(
+                categories__category=self.kwargs.get("category").capitalize()
+            )
+            context[
+                "message"
+            ] = f"""There are currently no products in the {self.kwargs.get('category')} category.
+            Check back later! :)"""
+        else:
+            context["products"] = Product.objects.all()
+            context["categories"] = Category.objects.all()
+            context["message"] = "There are no products yet. Check back later! :)"
         return context
 
 
 class DetailProductView(generic.DetailView):
     """The view for displaying details about a product."""
+
     model = Product
-    template_name = 'homepage/product_detail.html'
-    context_object_name = 'product'
+    template_name = "homepage/product_detail.html"
+    context_object_name = "product"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
