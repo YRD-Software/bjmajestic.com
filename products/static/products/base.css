@@ -18,6 +18,10 @@
     color: var(--navyblue) !important;
 }
 
+.text-bluegrotto {
+    color: var(--bluegrotto) !important;
+}
+
 a:hover {
     text-decoration: underline
 }
