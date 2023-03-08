@@ -18,9 +18,19 @@ $(function () {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
         },
       },
     ],
   });
+});
+
+$(".product-photo-slick").slick({
+  dots: true,
+  infinite: true,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  speed: 500,
+  fade: true,
+  cssEase: 'linear'
 });

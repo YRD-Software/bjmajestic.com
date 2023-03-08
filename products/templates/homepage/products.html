@@ -1,7 +1,5 @@
 {% extends "homepage/base.html" %} {% load static %} {% block CSS %}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:700|Raleway:500.700" />
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 <link rel="stylesheet" href="{% static 'products/card.css' %}" />
 {% endblock CSS %} 
 
@@ -51,7 +49,7 @@
 <div id="app" class="container-card">
   {% for product in products %}
   <a href="{% url 'products:product_detail' product.pk %}">
-    <card data-image="{{ product.photo.url }}">
+    <card data-image="{{ product.productphoto_set.first.photo.url}}">
       <h1 slot="header">{{ product.name }}</h1>
     </card>
   </a>

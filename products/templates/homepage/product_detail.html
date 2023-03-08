@@ -2,27 +2,12 @@
 <div class="container-fluid bg-lightblue p-5">
   <div class="container col-lg-10 col-xxl-8">
     <a class="btn btn-navyblue mb-3" href="javascript:window.history.back();">Back</a>
-    <div class="row justify-content-center">
-      <div class="col">
-        <div id="carouselFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active overflow-hidden">
-              <img src="{{ product.photo.url }}" class="img-fluid detail-product-crop" />
-            </div>
-            {% for photo in product.productphoto_set.all %}
-            <div class="carousel-item overflow-hidden">
-              <img src="{{ photo.detail_photo.url }}" class="img-fluid detail-product-crop" />
-            </div>
-            {% endfor %}
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselFade" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselFade" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+    <div class="row gx-5 justify-content-center">
+      <div class="col-lg-8">
+        <div class="product-photo-slick">
+          {% for photo in product.productphoto_set.all %}
+          <img src="{{ photo.photo.url }}" class="img-fluid detail-product-crop" />
+          {% endfor %}
         </div>
       </div>
       <div class="my-3 w-100 d-block d-lg-none"></div>
