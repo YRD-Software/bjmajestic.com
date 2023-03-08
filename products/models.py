@@ -21,7 +21,6 @@ class Product(models.Model):
     """A description for a product"""
     name = models.CharField('product', max_length=30)
     description = models.TextField()
-    photo = models.ImageField(upload_to='product_images/')
     categories = models.ManyToManyField(Category, blank=True)
 
     def __str__(self):
@@ -36,11 +35,11 @@ class Product(models.Model):
 class ProductPhoto(models.Model):
     """Extra detailed photos of the product."""
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    detail_photo = models.ImageField(upload_to='detail_product_images/')
+    photo = models.ImageField(upload_to='product_images/', blank=True, null=True)
 
     def __str__(self):
         """Return string rep for ProductPhoto."""
-        return self.detail_photo.name
+        return self.photo.name
 
     class Meta:
         """Meta class for ProductPhoto."""
