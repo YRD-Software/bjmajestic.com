@@ -1,7 +1,4 @@
-{% extends "homepage/base.html" %}
-{% load static %}
-
-{% block content %}
+{% extends "homepage/base.html" %} {% load static %} {% block content %}
 <div class="container-fluid bg-lightblue p-5">
   <div class="container col-lg-10 col-xxl-8">
     <a class="btn btn-bluegrotto mb-3" href="javascript:window.history.back();">Back</a>
@@ -10,11 +7,11 @@
         <div id="carouselFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active overflow-hidden">
-              <img src="{{ product.photo.url }}" class="img-fluid detail-product-crop">
+              <img src="{{ product.photo.url }}" class="img-fluid detail-product-crop" />
             </div>
             {% for photo in product.productphoto_set.all %}
             <div class="carousel-item overflow-hidden">
-              <img src="{{ photo.detail_photo.url }}" class="img-fluid detail-product-crop">
+              <img src="{{ photo.detail_photo.url }}" class="img-fluid detail-product-crop" />
             </div>
             {% endfor %}
           </div>
@@ -36,12 +33,17 @@
         <div class="mt-3">
           <p class="text-navyblue">{{ product.description }}</p>
         </div>
+        <div class="mt-3">
+          {% for tag in tags %}
+          <a href="{% url 'products:products' tag|lower %}" class="btn btn-navyblue badge">{{tag}}</a>
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>
   {% comment %} #NOTE: Uncomment with similar products feature is ready
   <div class="container col-12 col-lg-11 col-xxl-9">
-    <hr class="my-5">
+    <hr class="my-5" />
   </div>
   <div class="container mt-5 col-lg-10 col-xxl-8">
     <div class="mb-5">
@@ -50,12 +52,15 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
       {% for product in similar_products %}
       <div class="col">
-        <img class="similar-product-crop" src="https://image-placeholder.com/images/actual-size/320x240.png"
-          alt="similar product {{ product }}">
+        <img
+          class="similar-product-crop"
+          src="https://image-placeholder.com/images/actual-size/320x240.png"
+          alt="similar product {{ product }}"
+        />
       </div>
       {% endfor %}
     </div>
-  </div> 
+  </div>
   {% endcomment %}
 </div>
 {% endblock content %}

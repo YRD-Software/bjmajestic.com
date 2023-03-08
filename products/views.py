@@ -47,5 +47,5 @@ class DetailProductView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["similar_products"] = [1, 2, 3]
+        context["tags"] = context["product"].categories.all()
         return context

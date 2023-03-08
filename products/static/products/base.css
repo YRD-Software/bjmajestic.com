@@ -120,6 +120,23 @@ a {
     --bs-btn-disabled-border-color: var(--bluegrotto);
 }
 
+.btn-navyblue {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--navyblue);
+    --bs-btn-border-color: var(--navyblue);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #2280a9;
+    --bs-btn-hover-border-color: #98d9f7;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #2992a7;
+    --bs-btn-active-border-color: #45a2b4;
+    --bs-btn-active-shadow: inset 0 3px 5px #2fb5d0;
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: var(--navyblue);
+    --bs-btn-disabled-border-color: var(--navyblue);
+}
+
 .carousel-crop {
     width: 100%;
     height: 500px;
