@@ -19,18 +19,21 @@ class ProductsView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["page"] = "product"
+        context["categories"] = Category.objects.all()
         # If a category is specified, filter products by that category
         if self.kwargs.get("category"):
+            print(self.kwargs.get("category").title())
             context["products"] = Product.objects.filter(
-                categories__category=self.kwargs.get("category").capitalize()
+                categories__category=self.kwargs.get("category").title()
             )
+            context["title"] = self.kwargs.get("category").title()
             context[
                 "message"
             ] = f"""There are currently no products in the {self.kwargs.get('category')} category.
             Check back later! :)"""
         else:
             context["products"] = Product.objects.all()
-            context["categories"] = Category.objects.all()
+            context["title"] = "Categories"
             context["message"] = "There are no products yet. Check back later! :)"
         return context
 
