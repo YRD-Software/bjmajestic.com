@@ -23,7 +23,6 @@ class ProductsView(generic.ListView):
 
         # If a category is specified, filter products by that category
         if self.kwargs.get("category"):
-            print(self.kwargs.get("category").title())
             context["products"] = Product.objects.filter(
                 categories__category=self.kwargs.get("category").title()
             )
