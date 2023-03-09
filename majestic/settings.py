@@ -172,9 +172,9 @@ if os.environ.get('USE_OSS') == 'True':
     OSS_BUCKET_NAME = os.environ.get('OSS_BUCKET_NAME')
     OSS_ENDPOINT = os.environ.get('OSS_ENDPOINT')
 else:
-    # Static files
+    # Local Static files
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
-    # Media files
+    # Local Media files
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 STATIC_URL = '/static/'

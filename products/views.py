@@ -20,6 +20,7 @@ class ProductsView(generic.ListView):
         context = super().get_context_data(**kwargs)
         context["page"] = "product"
         context["categories"] = Category.objects.all()
+
         # If a category is specified, filter products by that category
         if self.kwargs.get("category"):
             print(self.kwargs.get("category").title())
