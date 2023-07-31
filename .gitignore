@@ -6,6 +6,7 @@ venv/
 *.pem
 nginx.conf
 migrations/
+compose-dev.yaml
 
 # IDEs
 /.vscode/
