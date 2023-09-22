@@ -5,10 +5,11 @@ services:
     build:
       context: .
     command: python manage.py runserver 0.0.0.0:8000
-    ports: 
+    ports:
       - "8000:8000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
     image: mysql
@@ -16,6 +17,10 @@ services:
       - mysql_data:/var/lib/mysql
     env_file:
       - db.env
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
 
 volumes:
   mysql_data:
