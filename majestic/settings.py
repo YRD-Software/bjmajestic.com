@@ -15,7 +15,7 @@ import os
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
-load_dotenv('.env.dev')
+# load_dotenv('.env')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,11 +32,11 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 # Server security settings
 # CSRF_COOKIE_SECURE = not DEBUG
 # SESSION_COOKIE_SECURE = not DEBUG
-SECURE_HSTS_SECONDS = 2_592_000  # 30 days
-SECURE_HSTS_PRELOAD = not DEBUG
-SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+# SECURE_HSTS_SECONDS = 2_592_000  # 30 days
+# SECURE_HSTS_PRELOAD = not DEBUG
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG
+# SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+# SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
 # 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
@@ -163,8 +163,9 @@ USE_TZ = True
 
 
 # Assets setting (static files and image files)
+USE_OSS = os.environ.get('USE_OSS') == 'True'
 
-if os.environ.get('USE_OSS') == 'True':
+if USE_OSS:
     DEFAULT_FILE_STORAGE = 'django_oss_storage.backends.OssMediaStorage'
     STATICFILES_STORAGE = 'django_oss_storage.backends.OssStaticStorage'
     OSS_ACCESS_KEY_ID = os.environ.get('OSS_ACCESS_KEY_ID')
