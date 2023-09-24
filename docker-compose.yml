@@ -6,7 +6,9 @@ services:
       context: .
     command: python manage.py runserver 0.0.0.0:8000
     ports:
-      - "8000:8000"
+      - 8000:8000
+    env_file:
+      - env/.env
     depends_on:
       db:
         condition: service_healthy
@@ -16,12 +18,11 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     env_file:
-      - db.env
+      - env/db.env
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
-      timeout: 20s
+      timeout: 15s
       retries: 10
-      start_period: 10s
 
 volumes:
   mysql_data:
