@@ -30,9 +30,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 # Server security settings
-# CSRF_COOKIE_SECURE = not DEBUG
-# SESSION_COOKIE_SECURE = not DEBUG
-# SECURE_HSTS_SECONDS = 2_592_000  # 30 days
+CSRF_COOKIE_SECURE = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
+SECURE_HSTS_SECONDS = 5  # 30 days
 # SECURE_HSTS_PRELOAD = not DEBUG
 # SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG
 # SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
@@ -42,7 +42,7 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
 ALLOWED_HOSTS = ['localhost', '127.0.0.1'] if DEBUG else os.environ.get(
     'DJANGO_ALLOWED_HOSTS').split(' ')
-CSRF_TRUSTED_ORIGINS = ["http://*"] if DEBUG else os.environ.get('CSRF_TRUSTED_ORIGINS').split(' ')
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8080', 'http://localhost:8000'] if DEBUG else os.environ.get('CSRF_TRUSTED_ORIGINS').split(' ')
 
 # Application definition
 
