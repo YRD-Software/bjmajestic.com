@@ -4,11 +4,14 @@ services:
   django:
     build:
       context: .
-    command: python manage.py runserver 0.0.0.0:8000
+    # command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn -c gunicorn.conf.py
     ports:
       - 8000:8000
+    # expose:
+    #   - 8000
     env_file:
-      - env/.env
+      - ./env/.env
     depends_on:
       db:
         condition: service_healthy
@@ -18,11 +21,18 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     env_file:
-      - env/db.env
+      - ./env/db.env
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       timeout: 15s
       retries: 10
+
+  nginx:
+    build: ./nginx
+    ports:
+      - 8080:80
+    depends_on:
+      - django
 
 volumes:
   mysql_data:
