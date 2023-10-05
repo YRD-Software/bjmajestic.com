@@ -2,10 +2,11 @@
 .python-version
 **/__pycache__/
 venv/
-.env*
+env/
 *.pem
 nginx.conf
 migrations/
+compose-dev.yaml
 
 # IDEs
 /.vscode/
