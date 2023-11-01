@@ -165,6 +165,7 @@ USE_TZ = True
 
 # Assets setting (static files and image files)
 USE_OSS = os.environ.get('USE_OSS') == 'True'
+USE_S3 = os.environ.get('USE_S3') == 'True'
 
 if USE_OSS:
     DEFAULT_FILE_STORAGE = 'django_oss_storage.backends.OssMediaStorage'
@@ -173,6 +174,27 @@ if USE_OSS:
     OSS_ACCESS_KEY_SECRET = os.environ.get('OSS_ACCESS_KEY_SECRET')
     OSS_BUCKET_NAME = os.environ.get('OSS_BUCKET_NAME')
     OSS_ENDPOINT = os.environ.get('OSS_ENDPOINT')
+elif USE_S3:
+    STORAGES = {
+        'default': {
+            'BACKEND': 'storages.backends.s3.S3Storage',
+            'OPTIONS': {
+                'access_key': os.environ.get('AWS_ACCESS_KEY_ID'),
+                'secret_key': os.environ.get('AWS_SECRET_ACCESS_KEY'),
+                'bucket_name': os.environ.get('AWS_STORAGE_BUCKET_NAME'),
+                'endpoint_url': os.environ.get('AWS_S3_ENDPOINT_URL'),
+                'location': 'static',
+                'custom_domain': os.environ.get('AWS_S3_CUSTOM_DOMAIN'),
+                'secure_urls': True,
+                'file_overwrite': True,
+                'auto_create_bucket': True,
+                'headers': {
+                    'Cache-Control': 'max-age=86400',
+                },
+                'default_acl': 'public-read',
+            }
+        }
+    }
 else:
     # Local Static files
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
