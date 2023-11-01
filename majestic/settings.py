@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'catalog',
     # Cloud storage
     'django_oss_storage',
+    'storages',
     # File cleanup
     'django_cleanup',
     # Django Apps
