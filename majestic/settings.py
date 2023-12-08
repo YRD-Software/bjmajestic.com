@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 # Load environment variables from .env file
 # load_dotenv('.env')
@@ -42,7 +42,10 @@ SECURE_HSTS_SECONDS = 5  # 30 days
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
 ALLOWED_HOSTS = ['localhost', '127.0.0.1'] if DEBUG else os.environ.get(
     'DJANGO_ALLOWED_HOSTS').split(' ')
-CSRF_TRUSTED_ORIGINS = ['http://localhost:8080', 'http://localhost:8000'] if DEBUG else os.environ.get('CSRF_TRUSTED_ORIGINS').split(' ')
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8080',
+    'http://localhost:8000'
+] if DEBUG else os.environ.get('CSRF_TRUSTED_ORIGINS').split(' ')
 
 # Application definition
 
