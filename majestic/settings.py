@@ -12,10 +12,11 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 
 import os
-from dotenv import load_dotenv
+
+# from dotenv import load_dotenv
 
 # Load environment variables from .env file
-# load_dotenv('.env')
+# load_dotenv('env/.env')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,10 +25,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
 # Server security settings
 CSRF_COOKIE_SECURE = not DEBUG
@@ -40,79 +41,85 @@ SECURE_HSTS_SECONDS = 5  # 30 days
 
 # 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
-ALLOWED_HOSTS = ['localhost', '127.0.0.1'] if DEBUG else os.environ.get(
-    'DJANGO_ALLOWED_HOSTS').split(' ')
-CSRF_TRUSTED_ORIGINS = ['http://localhost:8080', 'http://localhost:8000'] if DEBUG else os.environ.get('CSRF_TRUSTED_ORIGINS').split(' ')
+ALLOWED_HOSTS = (
+    ["localhost", "127.0.0.1"] if DEBUG else os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+)
+CSRF_TRUSTED_ORIGINS = (
+    ["http://localhost:8080", "http://localhost:8000"]
+    if DEBUG
+    else os.environ.get("CSRF_TRUSTED_ORIGINS").split(" ")
+)
 
 # Application definition
 
 INSTALLED_APPS = [
     # Majestic apps
-    'products',
-    'contact_us',
-    'about',
-    'catalog',
+    "products",
+    "contact_us",
+    "about",
+    "catalog",
     # Cloud storage
-    'django_oss_storage',
+    "django_oss_storage",
+    "storages",
     # File cleanup
-    'django_cleanup',
+    "django_cleanup",
     # Django Apps
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'majestic.urls'
+ROOT_URLCONF = "majestic.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.media',
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.media",
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'majestic.wsgi.application'
+WSGI_APPLICATION = "majestic.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 # Superuser initialization variables
-SUPERUSER_USERNAME = os.environ.get('SUPERUSER_USERNAME')
-SUPERUSER_PASSWORD = os.environ.get('SUPERUSER_PASSWORD')
+SUPERUSER_USERNAME = os.environ.get("SUPERUSER_USERNAME")
+SUPERUSER_PASSWORD = os.environ.get("SUPERUSER_PASSWORD")
 
-if os.environ.get('USE_MYSQL') == 'True':
+if os.environ.get("USE_MYSQL") == "True":
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.mysql",
-            "NAME": os.environ.get('DATABASE_NAME'),
-            "USER": os.environ.get('DATABASE_USER'),
-            "PASSWORD": os.environ.get('DATABASE_PASSWORD'),
+            "NAME": os.environ.get("DATABASE_NAME"),
+            "USER": os.environ.get("DATABASE_USER"),
+            "PASSWORD": os.environ.get("DATABASE_PASSWORD"),
             # set in docker-compose.yml
-            "HOST": os.environ.get('DATABASE_HOST'),
-            "PORT": os.environ.get('DATABASE_PORT'),
+            "HOST": os.environ.get("DATABASE_HOST"),
+            "PORT": os.environ.get("DATABASE_PORT"),
             "OPTIONS": {
                 "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
             },
@@ -120,9 +127,9 @@ if os.environ.get('USE_MYSQL') == 'True':
     }
 else:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         }
     }
 
@@ -131,29 +138,25 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME':
-            'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME':
-            'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME':
-            'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME':
-            'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -163,37 +166,65 @@ USE_TZ = True
 
 
 # Assets setting (static files and image files)
-USE_OSS = os.environ.get('USE_OSS') == 'True'
+USE_OSS = os.environ.get("USE_OSS") == "True"
+USE_S3 = os.environ.get("USE_S3") == "True"
 
 if USE_OSS:
-    DEFAULT_FILE_STORAGE = 'django_oss_storage.backends.OssMediaStorage'
-    STATICFILES_STORAGE = 'django_oss_storage.backends.OssStaticStorage'
-    OSS_ACCESS_KEY_ID = os.environ.get('OSS_ACCESS_KEY_ID')
-    OSS_ACCESS_KEY_SECRET = os.environ.get('OSS_ACCESS_KEY_SECRET')
-    OSS_BUCKET_NAME = os.environ.get('OSS_BUCKET_NAME')
-    OSS_ENDPOINT = os.environ.get('OSS_ENDPOINT')
+    DEFAULT_FILE_STORAGE = "django_oss_storage.backends.OssMediaStorage"
+    STATICFILES_STORAGE = "django_oss_storage.backends.OssStaticStorage"
+    OSS_ACCESS_KEY_ID = os.environ.get("OSS_ACCESS_KEY_ID")
+    OSS_ACCESS_KEY_SECRET = os.environ.get("OSS_ACCESS_KEY_SECRET")
+    OSS_BUCKET_NAME = os.environ.get("OSS_BUCKET_NAME")
+    OSS_ENDPOINT = os.environ.get("OSS_ENDPOINT")
+elif USE_S3:
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    STORAGES = {
+        "staticfiles": {
+            "BACKEND": "storages.backends.s3.S3Storage",
+            "OPTIONS": {
+                "bucket_name": os.environ.get("AWS_STORAGE_BUCKET_NAME"),
+                "location": "static",
+                "file_overwrite": True,
+                "default_acl": "public-read",
+            },
+        },
+        "default": {
+            "BACKEND": "storages.backends.s3.S3Storage",
+            "OPTIONS": {
+                "bucket_name": os.environ.get("AWS_STORAGE_BUCKET_NAME"),
+                "location": "media",
+                "file_overwrite": False,
+                "default_acl": "public-read",
+            },
+        }
+    }
 else:
-    # Local Static files
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
-    # Local Media files
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
 
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Email settings
-USE_SMTP = os.environ.get('USE_SMTP') == 'True'
+USE_SMTP = os.environ.get("USE_SMTP") == "True"
 
 if USE_SMTP:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
-    EMAIL_HOST = os.environ.get('EMAIL_HOST')
-    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-    EMAIL_PORT = os.environ.get('EMAIL_PORT')
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL")
+    EMAIL_HOST = os.environ.get("EMAIL_HOST")
+    EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+    EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+    EMAIL_PORT = os.environ.get("EMAIL_PORT")
     EMAIL_USE_SSL = True
-    DEFAULT_TO_EMAIL = os.environ.get('DEFAULT_TO_EMAIL')
+    DEFAULT_TO_EMAIL = os.environ.get("DEFAULT_TO_EMAIL")
 else:
-    DEFAULT_FROM_EMAIL = 'contact@example.com'
-    DEFAULT_TO_EMAIL = 'manager@example.com'
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = "contact@example.com"
+    DEFAULT_TO_EMAIL = "manager@example.com"
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

@@ -11,6 +11,8 @@ pillow = "*"
 "django4.0-oss-storage" = "*"
 mysqlclient = "*"
 gunicorn = "*"
+django-storages = "*"
+boto3 = "*"
 
 [dev-packages]
 flake8 = "*"
