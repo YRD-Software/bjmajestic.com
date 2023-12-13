@@ -14,5 +14,3 @@ RUN apk add --no-cache --virtual build-deps gcc musl-dev pkgconf mariadb-dev && 
     apk add --no-cache mysql-client && \
     pip install --no-cache-dir -r requirements.txt && \
     apk del build-deps
-
-# RUN python manage.py collectstatic --noinput
