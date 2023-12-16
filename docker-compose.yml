@@ -20,6 +20,3 @@ services:
       # - 80:80
     depends_on:
       - django
-
-volumes:
-  mysql_data:
