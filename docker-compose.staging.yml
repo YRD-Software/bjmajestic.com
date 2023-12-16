@@ -13,13 +13,36 @@ services:
     env_file:
       - ./env/.env.dev
 
-  nginx:
-    build: ./nginx
+  nginx-proxy:
+    comtainer_name: nginx-proxy
+    build: nginx
+    restart: always
     ports:
       - 8080:80
-      # - 80:80
+      - 4430:443
+    volumes:
+      - certs:/etc/nginx/certs
+      - html:/usr/share/nginx/html
+      - vhost:/etc/nginx/vhost.d
+      - /var/run/docker.sock:/tmp/docker.sock:ro
     depends_on:
       - django
 
+  acme-companion:
+    image: nginxproxy/acme-companion
+    env_file:
+      - ./env/.env.staging.proxy-companion
+    volumes:
+      - certs:/etc/nginx/certs
+      - html:/usr/share/nginx/html
+      - vhost:/etc/nginx/vhost.d
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - acme:/etc/acme.sh
+    depends_on:
+      - nginx-proxy
+
 volumes:
-  mysql_data:
+  certs:
+  html:
+  vhost:
+  acme:
