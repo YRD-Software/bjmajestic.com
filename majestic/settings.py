@@ -36,7 +36,7 @@ SESSION_COOKIE_SECURE = not DEBUG
 SECURE_HSTS_SECONDS = 5  # 30 days
 # SECURE_HSTS_PRELOAD = not DEBUG
 # SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG
-# SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 # SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
 # 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
