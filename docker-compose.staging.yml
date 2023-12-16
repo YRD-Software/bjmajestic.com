@@ -10,20 +10,26 @@ services:
              python manage.py migrate &&
              python manage.py collectstatic --noinput &&
              gunicorn -c gunicorn.conf.py"
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/mediafiles
     env_file:
       - ./env/.env.dev
 
   nginx-proxy:
-    comtainer_name: nginx-proxy
+    container_name: nginx-proxy
     build: nginx
     restart: always
     ports:
-      - 8080:80
-      - 4430:443
+      - 80:80
+      - 443:443
     volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/mediafiles
       - certs:/etc/nginx/certs
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
+      - vhost:/etc/nginx/vhost.d
     depends_on:
       - django
 
@@ -36,10 +42,14 @@ services:
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - acme:/etc/acme.sh
+      - vhost:/etc/nginx/vhost.d
     depends_on:
       - nginx-proxy
 
 volumes:
+  static_volume:
+  media_volume:
   certs:
   html:
   acme:
+  vhost:
