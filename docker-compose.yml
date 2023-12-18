@@ -4,11 +4,9 @@ services:
   django:
     build:
       context: .
-    # command: python manage.py runserver 0.0.0.0:8000
     command: >
       sh -c "python manage.py makemigrations &&
              python manage.py migrate &&
-             python manage.py collectstatic --noinput &&
              gunicorn -c gunicorn.conf.py"
     env_file:
       - ./env/.env
@@ -16,7 +14,14 @@ services:
   nginx:
     build: ./nginx
     ports:
-      - 8080:80
-      # - 80:80
+      - 80:80
+      - 443:443
+    volumes:
+      - nginx_volume:/etc/nginx/conf.d
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/www/certbot:/var/www/certbot
     depends_on:
       - django
+
+volumes:
+  nginx_volume:
