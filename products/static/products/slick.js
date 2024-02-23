@@ -29,6 +29,7 @@ $(".product-photo-slick").slick({
   dots: true,
   infinite: true,
   autoplay: true,
+  adaptiveHeight: true,
   autoplaySpeed: 2000,
   speed: 500,
   fade: true,

@@ -4,7 +4,7 @@
     <a class="btn btn-navyblue mb-3" href="javascript:window.history.back();">Back</a>
     <div class="row gx-5 justify-content-center">
       <div class="col-lg-8">
-        <div class="product-photo-slick">
+        <div class="product-photo-slick bg-white p-3">
           {% for photo in product.productphoto_set.all %}
           <img src="{{ photo.photo.url }}" class="img-fluid detail-product-crop" />
           {% endfor %}
