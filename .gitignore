@@ -14,7 +14,7 @@ compose-dev.yaml
 
 # Django Local Assets
 /staticfiles/
-/media/
+/mediafiles/
 *.sqlite3
 
 #macOS
