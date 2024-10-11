@@ -3,6 +3,6 @@ services:
     build:
       context: .
     command: >
-      sh -c "python manage.py collectstatic"    
+      sh -c "python manage.py collectstatic --no-input"    
     env_file:
       - ./env/.env
