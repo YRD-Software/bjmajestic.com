@@ -4,10 +4,12 @@
 ## Developer's Guide
 
 **Required:**
+
 - Pipenv
 - Pyenv
 
 ### Local development
+
 `pipenv install`
 
 ---
@@ -15,11 +17,13 @@
 ## Deployment
 
 ### Environment variables
+
 ```properties
 # Django Settings variables
 DJANGO_DEBUG=<True/False>
 SECRET_KEY=<Django's secrete key>
 DJANGO_ALLOWED_HOSTS=<IP address or domain>
+CSRF_TRUSTED_ORIGINS=http://localhost:8000
 
 # Storage environment variables
 USE_OSS=<True/False>
