@@ -27,3 +27,5 @@ export const Logo = (props: Props) => {
     />
   )
 }
+
+export default Logo
