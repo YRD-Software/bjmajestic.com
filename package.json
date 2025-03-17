@@ -1,7 +1,7 @@
 {
   "name": "majesticweb",
   "version": "1.0.0",
-  "description": "Website template for Payload",
+  "description": "Website for Beijing Majestic",
   "license": "MIT",
   "type": "module",
   "scripts": {
