@@ -57,6 +57,18 @@ export default buildConfig({
         },
       ],
     },
+    meta: {
+      title: 'Beijing Majestic',
+      titleSuffix: " - Admin Panel",
+      description: 'Beijing Majestic Admin Panel',
+      icons: [
+        {
+          url: '/favicon.png',
+          type: 'image/png',
+          rel: 'icon',
+        },
+      ],
+    },
   },
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
@@ -74,10 +86,10 @@ export default buildConfig({
     vercelBlobStorage({
       enabled: true,
       collections: {
-        media: true
+        media: true,
       },
       token: process.env.BLOB_READ_WRITE_TOKEN,
-    })
+    }),
   ],
   secret: process.env.PAYLOAD_SECRET,
   sharp,
