@@ -1,10 +1,11 @@
-// storage-adapter-import-placeholder
 import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres'
 
 import sharp from 'sharp' // sharp-import
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
+import { zh } from '@payloadcms/translations/languages/zh'
+import { en } from '@payloadcms/translations/languages/en'
 
 import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
@@ -67,6 +68,10 @@ export default buildConfig({
         },
       ],
     },
+  },
+  i18n: {
+    fallbackLanguage: 'en',
+    supportedLanguages: { en, zh },
   },
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,

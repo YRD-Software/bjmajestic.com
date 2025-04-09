@@ -33,6 +33,7 @@
     "@payloadcms/plugin-seo": "latest",
     "@payloadcms/richtext-lexical": "latest",
     "@payloadcms/storage-vercel-blob": "latest",
+    "@payloadcms/translations": "^3.33.0",
     "@payloadcms/ui": "latest",
     "@radix-ui/react-checkbox": "^1.1.5",
     "@radix-ui/react-label": "^2.1.3",
