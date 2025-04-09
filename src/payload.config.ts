@@ -73,6 +73,10 @@ export default buildConfig({
     fallbackLanguage: 'en',
     supportedLanguages: { en, zh },
   },
+  localization: {
+    defaultLocale: 'en',
+    locales: [ 'en', 'zh' ],
+  },
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
   db: vercelPostgresAdapter({
