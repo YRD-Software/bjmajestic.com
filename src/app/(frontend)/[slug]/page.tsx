@@ -18,6 +18,7 @@ export async function generateStaticParams() {
     collection: 'pages',
     draft: false,
     limit: 1000,
+    locale: 'zh-Hans',
     overrideAccess: false,
     pagination: false,
     select: {
@@ -85,12 +86,35 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
 const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
   const { isEnabled: draft } = await draftMode()
 
+  // Get the locale from the request
+  const { headers } = await import('next/headers')
+  const headersList = headers()
+
+  // Check if we have a locale cookie (from manual selection)
+  const cookieHeader = (await headersList).get('cookie') || ''
+  const localeCookie = cookieHeader
+    .split(';')
+    .map((cookie) => cookie.trim())
+    .find((cookie) => cookie.startsWith('NEXT_LOCALE='))
+
+  let locale: 'all' | 'zh-Hans' | 'en' | undefined = 'en' // Default locale
+
+  // If the user has manually set a locale via the dropdown, use that
+  if (localeCookie) {
+    const cookieValue = localeCookie.split('=')[1]
+    if (cookieValue === 'en' || cookieValue === 'zh-Hans') {
+      locale = cookieValue
+    }
+  }
+  // No else clause - we now just use the default 'en' if no cookie is present
+
   const payload = await getPayload({ config: configPromise })
 
   const result = await payload.find({
     collection: 'pages',
     draft,
     limit: 1,
+    locale,
     pagination: false,
     overrideAccess: draft,
     where: {

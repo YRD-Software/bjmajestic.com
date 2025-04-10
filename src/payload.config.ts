@@ -74,8 +74,18 @@ export default buildConfig({
     supportedLanguages: { en, zh },
   },
   localization: {
+    locales: [
+      {
+        label: '简体中文',
+        code: 'zh-Hans',
+      },
+      {
+        label: 'English',
+        code: 'en',
+      },
+    ],
     defaultLocale: 'en',
-    locales: [ 'en', 'zh' ],
+    fallback: true,
   },
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
