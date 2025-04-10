@@ -18,7 +18,6 @@ export async function generateStaticParams() {
     collection: 'pages',
     draft: false,
     limit: 1000,
-    locale: 'zh-Hans',
     overrideAccess: false,
     pagination: false,
     select: {
