@@ -22,6 +22,22 @@ const nextConfig = {
   },
   reactStrictMode: true,
   redirects,
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      // Add 'pg-cloudflare' to serverComponentsExternalPackages
+      config.externals = [...(config.externals || []), 'pg-cloudflare'];
+    }
+    
+    // Add a fallback for the cloudflare:sockets scheme
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      'cloudflare:sockets': false,
+    };
+    
+    return config;
+  },
+  // Add pg-native to transpilePackages to prevent build issues
+  transpilePackages: ['pg', 'pg-cloudflare'],
 }
 
 export default withPayload(nextConfig)
