@@ -12,7 +12,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
   const { setHeaderTheme } = useHeaderTheme()
 
   return (
-    <div className="relative -mt-[10.4rem] min-h-[80vh] flex items-center justify-center text-text">
+    <div className="relative min-h-[80vh] flex items-center justify-center text-text">
       {/* Content First */}
       <div className="container mb-8 z-10 relative flex items-center justify-center">
         <div className="max-w-[36.5rem] md:text-center">
