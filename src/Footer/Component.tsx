@@ -23,7 +23,8 @@ export async function Footer() {
 
         <div className="flex flex-col-reverse items-start md:flex-row gap-4 md:items-center">
           <ThemeSelector />
-          <LocaleSelector />
+          {/* LocaleSelector is commented out, but may be used in the future */}
+          {/* <LocaleSelector /> */}
           <nav className="flex flex-col md:flex-row gap-4">
             {navItems.map(({ link }, i) => {
               return <CMSLink className="text-text" key={i} {...link} />
