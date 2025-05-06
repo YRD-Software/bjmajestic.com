@@ -1,12 +1,10 @@
 'use client'
 import { useHeaderTheme } from '@/providers/HeaderTheme'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 import type { Header } from '@/payload-types'
 
-import { Logo } from '@/components/Logo/Logo'
 import { HeaderNav, HeaderMobileNav } from './Nav'
 
 interface HeaderClientProps {
@@ -34,13 +32,8 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
       className="z-20 dark:bg-secondary bg-background"
       {...(theme ? { 'data-theme': theme } : {})}
     >
-      <div className="container py-4 flex justify-between items-center">
-        <Link href="/">
-          <Logo loading="eager" priority="high" />
-        </Link>
-        <HeaderNav data={data} />
-        <HeaderMobileNav data={data} />
-      </div>
+      <HeaderNav data={data} />
+      <HeaderMobileNav data={data} />
     </header>
   )
 }

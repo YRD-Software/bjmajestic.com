@@ -7,13 +7,17 @@ import type { Header as HeaderType } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import Link from 'next/link'
 import { SearchIcon, Menu, X } from 'lucide-react'
+import Logo from '@/components/Logo/Logo'
 
 export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const navItems = data?.navItems || []
 
   return (
-    <nav>
-      <div className="hidden md:flex gap-3 items-center">
+    <nav className="hidden md:flex container py-4 justify-between items-center">
+      <Link href={'/'}>
+        <Logo loading="eager" priority="high" />
+      </Link>
+      <div className="md:flex gap-3 items-center">
         {navItems.map(({ link }, i) => {
           return <CMSLink key={i} {...link} appearance="link" />
         })}
@@ -27,19 +31,23 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
 }
 
 export const HeaderMobileNav: React.FC<{
-  data: HeaderType}> = ({ data }) => {
+  data: HeaderType
+}> = ({ data }) => {
   const navItems = data?.navItems || []
   const [isMobileNavOpen, setIsMobileNavOpen] = React.useState(false)
   const toggleNavBar = () => {
     setIsMobileNavOpen((prev) => !prev)
   }
   return (
-    <nav className="md:hidden">
-      <button onClick={toggleNavBar}>
-        {isMobileNavOpen ? <X /> : <Menu />}
-      </button>
+    <nav className="md:hidden container py-4">
+      <div className='flex justify-between items-center'>
+        <Link href={'/'}>
+          <Logo loading="eager" priority="high" />
+        </Link>
+        <button onClick={toggleNavBar}>{isMobileNavOpen ? <X /> : <Menu />}</button>
+      </div>
       {isMobileNavOpen && (
-        <div>
+        <div className='flex flex-col gap-3 mt-4 place-items-center'>
           {navItems.map(({ link }, i) => {
             return <CMSLink key={i} {...link} appearance="link" />
           })}
