@@ -35,21 +35,31 @@ export const HeaderMobileNav: React.FC<{
 }> = ({ data }) => {
   const navItems = data?.navItems || []
   const [isMobileNavOpen, setIsMobileNavOpen] = React.useState(false)
+
   const toggleNavBar = () => {
     setIsMobileNavOpen((prev) => !prev)
   }
+
+  const closeNavBar = () => {
+    setIsMobileNavOpen(false)
+  }
+
   return (
     <nav className="md:hidden container py-4">
-      <div className='flex justify-between items-center'>
+      <div className="flex justify-between items-center">
         <Link href={'/'}>
           <Logo loading="eager" priority="high" />
         </Link>
         <button onClick={toggleNavBar}>{isMobileNavOpen ? <X /> : <Menu />}</button>
       </div>
       {isMobileNavOpen && (
-        <div className='flex flex-col gap-3 mt-4 place-items-center'>
+        <div className="flex flex-col gap-3 mt-4 place-items-center">
           {navItems.map(({ link }, i) => {
-            return <CMSLink key={i} {...link} appearance="link" />
+            return (
+              <div key={i} onClick={closeNavBar}>
+                <CMSLink {...link} appearance="link" />
+              </div>
+            )
           })}
           <Link href="/search">
             <span className="sr-only">Search</span>
