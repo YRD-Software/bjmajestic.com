@@ -3,6 +3,7 @@ import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres'
 import sharp from 'sharp' // sharp-import
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import { fileURLToPath } from 'url'
 import { zh } from '@payloadcms/translations/languages/zh'
 import { en } from '@payloadcms/translations/languages/en'
@@ -69,6 +70,18 @@ export default buildConfig({
       ],
     },
   },
+  email: nodemailerAdapter({
+    defaultFromAddress: process.env.SMTP_USER || 'Default from email not configured.',
+    defaultFromName: 'Beijing Majestic Contact Notification',
+    transportOptions: {
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    },
+  }),
   i18n: {
     fallbackLanguage: 'en',
     supportedLanguages: { en, zh },
