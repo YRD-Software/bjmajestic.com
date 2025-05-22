@@ -13,9 +13,16 @@ export const Catalog: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
+      name: 'name',
       type: 'text',
       required: true,
     },
-  ]
+  ],
+  upload: {
+    staticDir: 'catalog',
+    disableLocalStorage: true,
+    crop: false,
+    pasteURL: false,
+    mimeTypes: ['application/pdf'],
+  },
 }
