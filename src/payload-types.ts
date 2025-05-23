@@ -193,7 +193,7 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | CatalogArchiveBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -731,6 +731,16 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CatalogArchiveBlock".
+ */
+export interface CatalogArchiveBlock {
+  title: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'catalogArchive';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "catalog".
  */
 export interface Catalog {
@@ -1042,6 +1052,7 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        catalogArchive?: T | CatalogArchiveBlockSelect<T>;
       };
   meta?:
     | T
@@ -1138,6 +1149,15 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CatalogArchiveBlock_select".
+ */
+export interface CatalogArchiveBlockSelect<T extends boolean = true> {
+  title?: T;
   id?: T;
   blockName?: T;
 }
