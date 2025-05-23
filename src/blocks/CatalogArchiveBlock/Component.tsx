@@ -15,6 +15,7 @@ export const CatalogArchiveBlock: React.FC<{ id?: string }> = async () => {
     limit,
   })
 
+  // TODO: Need to make this look nice
   return (
     <div className="my-16">
       <h1>Catalog Archive Block</h1>
