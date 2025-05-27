@@ -8,7 +8,12 @@ export const CatalogArchive: Block = {
       name: 'title',
       type: 'text',
       label: 'Title',
-      required: true,
-    }
+    },
+    {
+      name: 'limit',
+      type: 'number',
+      label: 'Number of Catalogs to Show',
+      defaultValue: 3,
+    },
   ]
 }

@@ -1,11 +1,16 @@
-import React from 'react'
+import type { CatalogArchiveBlock as CatalogArchiveBlockProps } from '@/payload-types'
 
+import React from 'react'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
-import Link from 'next/link'
 
-export const CatalogArchiveBlock: React.FC<{ id?: string }> = async () => {
-  const limit = 3 // TODO: Need something like: `const limit = limitFromProps || 3`
+import { Card } from '@/components/Card'
+
+export const CatalogArchiveBlock: React.FC<CatalogArchiveBlockProps & { id?: string }> = async (
+  props,
+) => {
+  const { limit: limitFromProps } = props
+  const limit = limitFromProps || 3
 
   const payload = await getPayload({ config: configPromise })
 
@@ -17,19 +22,16 @@ export const CatalogArchiveBlock: React.FC<{ id?: string }> = async () => {
 
   // TODO: Need to make this look nice
   return (
-    <div className="my-16">
-      <h1>Catalog Archive Block</h1>
-      <ul>
+    <div className="container">
+      <div className="my-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {fetchedCatalogs?.docs?.map((catalog) => {
           return (
-            <div key={catalog.id} className="mb-4">
-              <Link href={catalog.url || '#'} className="text-blue-500 hover:underline">
-                {catalog.name}
-              </Link>
+            <div key={catalog.id} className="">
+              <Card title={catalog.name} href={catalog.url}></Card>
             </div>
           )
         })}
-      </ul>
+      </div>
     </div>
   )
 }
