@@ -3,6 +3,7 @@ import { cn } from '@/utilities/ui'
 import useClickableCard from '@/utilities/useClickableCard'
 import Link from 'next/link'
 import React, { Fragment } from 'react'
+import NextImage from 'next/image'
 
 import type { Post } from '@/payload-types'
 
@@ -17,6 +18,7 @@ export const Card: React.FC<{
   showCategories?: boolean
   title?: string
   href?: string | null
+  mimeType?: string | null
 }> = (props) => {
   const { card, link } = useClickableCard({})
   const {
@@ -26,6 +28,7 @@ export const Card: React.FC<{
     showCategories,
     title: titleFromProps,
     href,
+    mimeType,
   } = props
 
   const { slug, categories, meta, title } = doc || {}
@@ -46,9 +49,14 @@ export const Card: React.FC<{
       )}
       ref={card.ref}
     >
-      <div className="relative w-full ">
-        {!metaImage && <div className="">No image</div>}
-        {metaImage && typeof metaImage !== 'string' && <Media resource={metaImage} size="33vw" />}
+      <div className="relative">
+        {!metaImage && !mimeType && <div className="">No image</div>}
+        {mimeType !== 'application/pdf' && metaImage && typeof metaImage !== 'string' && (
+          <Media resource={metaImage} size="33vw" />
+        )}
+        {mimeType === 'application/pdf' && (
+          <NextImage src="/pdf-placeholder.png" alt="PDF placeholder" width={200} height={300} className='w-full'/>
+        )}
       </div>
       <div className="p-4">
         {showCategories && hasCategories && (
