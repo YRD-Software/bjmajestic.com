@@ -20,7 +20,7 @@
     "payload:reset": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:reset",
     "reinstall": "cross-env NODE_OPTIONS=--no-deprecation rm -rf node_modules && rm pnpm-lock.yaml && pnpm --ignore-workspace install",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
-    "ci": "pnpm run payload:migrate && pnpm run build"
+    "ci": "payload migrate && pnpm build"
   },
   "dependencies": {
     "@payloadcms/db-vercel-postgres": "latest",
