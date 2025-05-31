@@ -2,7 +2,6 @@ import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-vercel-postg
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
-   CREATE TYPE "public"."_locales" AS ENUM('zh-Hans', 'en');
   CREATE TYPE "public"."enum_pages_hero_links_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum_pages_hero_links_link_appearance" AS ENUM('default', 'secondary', 'outline');
   CREATE TYPE "public"."enum_pages_blocks_cta_links_link_type" AS ENUM('reference', 'custom');
