@@ -70,6 +70,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         sizes={sizes}
         src={src}
         width={!fill ? width : undefined}
+        unoptimized // Use this to prevent Next.js from optimizing the image, useful for static images
       />
     </picture>
   )
