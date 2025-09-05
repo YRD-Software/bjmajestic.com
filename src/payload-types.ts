@@ -734,7 +734,6 @@ export interface Form {
  * via the `definition` "CatalogArchiveBlock".
  */
 export interface CatalogArchiveBlock {
-  title?: string | null;
   limit?: number | null;
   id?: string | null;
   blockName?: string | null;
@@ -1158,7 +1157,6 @@ export interface FormBlockSelect<T extends boolean = true> {
  * via the `definition` "CatalogArchiveBlock_select".
  */
 export interface CatalogArchiveBlockSelect<T extends boolean = true> {
-  title?: T;
   limit?: T;
   id?: T;
   blockName?: T;
