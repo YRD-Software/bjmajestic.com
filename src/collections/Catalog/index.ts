@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload'
 
 import { anyone } from '@/access/anyone'
 import { authenticated } from '@/access/authenticated'
+import { savePdfPreview } from './hooks/savePdfPreview'
 
 export const Catalog: CollectionConfig = {
   slug: 'catalog',
@@ -25,4 +26,7 @@ export const Catalog: CollectionConfig = {
     pasteURL: false,
     mimeTypes: ['application/pdf'],
   },
+  hooks: {
+    beforeOperation: [savePdfPreview]
+  }
 }
