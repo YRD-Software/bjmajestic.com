@@ -18,6 +18,12 @@ export const Catalog: CollectionConfig = {
       type: 'text',
       required: true,
     },
+    {
+      name: 'thumbnail',
+      type: 'upload',
+      relationTo: 'media',
+      required: false,
+    },
   ],
   upload: {
     staticDir: 'catalog',

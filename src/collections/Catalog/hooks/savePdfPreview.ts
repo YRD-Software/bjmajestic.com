@@ -1,69 +1,80 @@
-// import { Media } from '@/payload-types'
 import { type CollectionBeforeOperationHook } from 'payload'
-// import { fromBuffer } from 'pdf2pic'
-// import { pdf } from 'pdf-to-img'
-
-import { promises } from 'node:fs'
+import { pdf } from 'pdf-to-img'
 
 export const savePdfPreview: CollectionBeforeOperationHook = async ({ operation, req }) => {
   if (operation === 'create' || operation === 'update') {
-    const { file } = req
+    const { file, data } = req
 
     if (file && file.mimetype === 'application/pdf') {
-      // Convert first page of PDF buffer to image
+      try {
+        console.log('Starting PDF preview generation for:', file.name)
 
-      // const document = await pdf(file.data, {
-      //   scale: 2,
-      // })
+        // Convert first page of PDF buffer to image
+        const document = await pdf(file.data, {
+          scale: 2, // Higher scale for better quality
+        })
 
-      // const preview = await document.getPage(1)
+        // Get the first page using async iterator
+        const pages = []
+        for await (const page of document) {
+          pages.push(page)
+          if (pages.length >= 1) break // Only need first page
+        }
 
-      // await promises.writeFile(`./pdfPreview-${file.name}.jpeg`, preview)
-      
-      // const options = {
-      //   density: 100,
-      //   format: 'jpeg',
-      //   width: 600,
-      //   height: 800,
-      //   savePath: './media',
-      //   saveFilename: `pdfPreview-${file.name}`,
-      // }
+        if (pages.length === 0) {
+          throw new Error('PDF has no pages')
+        }
 
-      // const convert = fromBuffer(file.data, options)
+        const imageBuffer = pages[0]
 
-      // convert(1, {responseType: 'image'})
+        if (!imageBuffer) {
+          throw new Error('Failed to get image buffer from PDF page')
+        }
 
-      // convert(1, { responseType: 'buffer' }).then((result) => {
-      //   try {
-      //     if (!result.buffer) {
-      //       throw new Error('Failed to generate image buffer from PDF.')
-      //     }
+        console.log('PDF conversion successful, buffer size:', imageBuffer.length)
 
-      //     const imageFile: File = {
-      //       name: `pdfPreview-${file.name}.jpeg`,
-      //       data: result.buffer,
-      //       mimetype: 'image/jpeg',
-      //       size: result.buffer.length,
-      //     }
+        // Validate buffer has content
+        if (imageBuffer.length === 0) {
+          throw new Error('Generated image buffer is empty')
+        }
 
-      //     const imageFileMedia: Media = {
-      //       id: new Date().getTime(),
-      //       createdAt: new Date().toString(),
-      //       updatedAt: new Date().toString(),
-      //       filename: imageFile.name,
-      //       alt: `Preview of ${file.name}`,
-      //       mimeType: imageFile.mimetype,
-      //     }
+        // Check for JPEG header (should start with 0xFF 0xD8)
+        if (imageBuffer.length < 2 || imageBuffer[0] !== 0xff || imageBuffer[1] !== 0xd8) {
+          console.warn('Generated buffer does not appear to be a valid JPEG')
+          throw new Error('Generated image does not appear to be a valid JPEG file')
+        }
 
-      //     req.payload.create({
-      //       collection: 'media',
-      //       data: imageFileMedia,
-      //       file: imageFile,
-      //     })
-      //   } catch (err) {
-      //     console.error('Error generating PDF preview image:', err)
-      //   }
-      // })
+        // Create media item for the thumbnail
+        const thumbnailData = {
+          alt: `Preview of ${file.name}`,
+        }
+
+        const thumbnailFile = {
+          name: `pdf-preview-${Date.now()}.jpeg`,
+          data: imageBuffer as Buffer,
+          mimetype: 'image/jpeg',
+          size: imageBuffer.length,
+        }
+
+        console.log('Uploading thumbnail to media collection...')
+
+        // Upload the thumbnail to media collection
+        const thumbnail = await req.payload.create({
+          collection: 'media',
+          data: thumbnailData,
+          file: thumbnailFile,
+        })
+
+        console.log('Thumbnail uploaded successfully, ID:', thumbnail.id)
+
+        // Update the catalog data to include the thumbnail
+        if (data) {
+          data.thumbnail = thumbnail.id
+        }
+      } catch (err) {
+        console.error('Error generating PDF preview image:', err)
+        // Continue without thumbnail - will use default image
+      }
     }
   }
 }

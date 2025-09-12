@@ -26,7 +26,12 @@ export const CatalogArchiveBlock: React.FC<CatalogArchiveBlockProps & { id?: str
         {fetchedCatalogs?.docs?.map((catalog) => {
           return (
             <div key={catalog.id}>
-              <Card title={catalog.name} href={catalog.url} mimeType={catalog.mimeType}></Card>
+              <Card
+                title={catalog.name}
+                href={catalog.url}
+                mimeType={catalog.mimeType}
+                thumbnail={catalog.thumbnail}
+              ></Card>
             </div>
           )
         })}

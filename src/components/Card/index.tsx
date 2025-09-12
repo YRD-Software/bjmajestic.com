@@ -5,7 +5,7 @@ import Link from 'next/link'
 import React, { Fragment } from 'react'
 import NextImage from 'next/image'
 
-import type { Post } from '@/payload-types'
+import type { Post, Media as MediaType } from '@/payload-types'
 
 import { Media } from '@/components/Media'
 export type CardPostData = Pick<Post, 'slug' | 'categories' | 'meta' | 'title'>
@@ -19,6 +19,7 @@ export const Card: React.FC<{
   title?: string
   href?: string | null
   mimeType?: string | null
+  thumbnail?: MediaType | number | null
 }> = (props) => {
   const { card, link } = useClickableCard({})
   const {
@@ -29,6 +30,7 @@ export const Card: React.FC<{
     title: titleFromProps,
     href,
     mimeType,
+    thumbnail,
   } = props
 
   const { slug, categories, meta, title } = doc || {}
@@ -50,12 +52,21 @@ export const Card: React.FC<{
       ref={card.ref}
     >
       <div className="relative">
-        {!metaImage && !mimeType && <div className="">No image</div>}
+        {!metaImage && !thumbnail && !mimeType && <div className="">No image</div>}
         {mimeType !== 'application/pdf' && metaImage && typeof metaImage !== 'string' && (
           <Media resource={metaImage} size="33vw" />
         )}
-        {mimeType === 'application/pdf' && (
-          <NextImage src="/pdf-placeholder.png" alt="PDF placeholder" width={200} height={300} className='w-full'/>
+        {mimeType === 'application/pdf' && thumbnail && typeof thumbnail === 'object' && (
+          <Media resource={thumbnail} size="33vw" />
+        )}
+        {mimeType === 'application/pdf' && !thumbnail && (
+          <NextImage
+            src="/pdf-placeholder.png"
+            alt="PDF placeholder"
+            width={200}
+            height={300}
+            className="w-full"
+          />
         )}
       </div>
       <div className="p-4">
