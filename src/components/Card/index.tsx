@@ -4,11 +4,34 @@ import useClickableCard from '@/utilities/useClickableCard'
 import Link from 'next/link'
 import React, { Fragment } from 'react'
 import NextImage from 'next/image'
+import dynamic from 'next/dynamic'
 
 import type { Post, Media as MediaType } from '@/payload-types'
 
 import { Media } from '@/components/Media'
+
+// Dynamically import react-pdf to prevent SSR issues
+const Document = dynamic(() => import('react-pdf').then((mod) => ({ default: mod.Document })), {
+  ssr: false,
+  loading: () => <div className="animate-pulse bg-gray-200 h-48 w-full rounded"></div>,
+})
+const Page = dynamic(() => import('react-pdf').then((mod) => ({ default: mod.Page })), {
+  ssr: false,
+})
+
 export type CardPostData = Pick<Post, 'slug' | 'categories' | 'meta' | 'title'>
+
+// Setup PDF.js worker - this will only run on client side
+if (typeof window !== 'undefined') {
+  import('react-pdf').then(({ pdfjs }) => {
+    pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.js'
+  })
+}
+
+const options = {
+  cMapUrl: '/cmaps/',
+  standardFontDataUrl: '/standard_fonts/',
+}
 
 export const Card: React.FC<{
   alignItems?: 'center'
@@ -56,10 +79,21 @@ export const Card: React.FC<{
         {mimeType !== 'application/pdf' && metaImage && typeof metaImage !== 'string' && (
           <Media resource={metaImage} size="33vw" />
         )}
-        {mimeType === 'application/pdf' && thumbnail && typeof thumbnail === 'object' && (
+        {mimeType === 'application/pdf' && thumbnail && typeof thumbnail === 'object' ? (
           <Media resource={thumbnail} size="33vw" />
-        )}
-        {mimeType === 'application/pdf' && !thumbnail && (
+        ) : mimeType === 'application/pdf' && href ? (
+          <Document
+            file={hrefToUse}
+            options={options}
+          >
+            <Page
+              pageNumber={1}
+              width={400}
+              renderTextLayer={false}
+              renderAnnotationLayer={false}
+            />
+          </Document>
+        ) : mimeType === 'application/pdf' ? (
           <NextImage
             src="/pdf-placeholder.png"
             alt="PDF placeholder"
@@ -67,7 +101,7 @@ export const Card: React.FC<{
             height={300}
             className="w-full"
           />
-        )}
+        ) : null}
       </div>
       <div className="p-4">
         {showCategories && hasCategories && (

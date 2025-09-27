@@ -746,7 +746,6 @@ export interface CatalogArchiveBlock {
 export interface Catalog {
   id: number;
   name: string;
-  thumbnail?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -1328,7 +1327,6 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface CatalogSelect<T extends boolean = true> {
   name?: T;
-  thumbnail?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;

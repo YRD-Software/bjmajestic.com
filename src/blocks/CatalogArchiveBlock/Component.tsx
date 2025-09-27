@@ -30,7 +30,6 @@ export const CatalogArchiveBlock: React.FC<CatalogArchiveBlockProps & { id?: str
                 title={catalog.name}
                 href={catalog.url}
                 mimeType={catalog.mimeType}
-                thumbnail={catalog.thumbnail}
               ></Card>
             </div>
           )
