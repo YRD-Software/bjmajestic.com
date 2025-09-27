@@ -79,6 +79,8 @@ export const Card: React.FC<{
         {mimeType !== 'application/pdf' && metaImage && typeof metaImage !== 'string' && (
           <Media resource={metaImage} size="33vw" />
         )}
+        {/* TODO [BM-16]: Clean up unnecessary conditional rendering */}
+        {/* TODO: [BM-15] Update styling for pdf preview (see description) */}
         {mimeType === 'application/pdf' && thumbnail && typeof thumbnail === 'object' ? (
           <Media resource={thumbnail} size="33vw" />
         ) : mimeType === 'application/pdf' && href ? (
