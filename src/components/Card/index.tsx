@@ -3,8 +3,8 @@ import { cn } from '@/utilities/ui'
 import useClickableCard from '@/utilities/useClickableCard'
 import Link from 'next/link'
 import React, { Fragment } from 'react'
-import NextImage from 'next/image'
 import dynamic from 'next/dynamic'
+import { LoaderCircleIcon } from 'lucide-react'
 
 import type { Post, Media as MediaType } from '@/payload-types'
 
@@ -79,31 +79,17 @@ export const Card: React.FC<{
         {mimeType !== 'application/pdf' && metaImage && typeof metaImage !== 'string' && (
           <Media resource={metaImage} size="33vw" />
         )}
-        {/* TODO [BM-16]: Clean up unnecessary conditional rendering */}
-        {/* TODO: [BM-15] Update styling for pdf preview (see description) */}
-        {mimeType === 'application/pdf' && thumbnail && typeof thumbnail === 'object' ? (
-          <Media resource={thumbnail} size="33vw" />
-        ) : mimeType === 'application/pdf' && href ? (
-          <Document
-            file={hrefToUse}
-            options={options}
-          >
+        {mimeType === 'application/pdf' && (
+            <Document file={hrefToUse} options={options}>
             <Page
               pageNumber={1}
-              width={400}
+              height={350}
               renderTextLayer={false}
               renderAnnotationLayer={false}
+              className="w-full h-full flex items-center justify-center overflow-hidden"
             />
           </Document>
-        ) : mimeType === 'application/pdf' ? (
-          <NextImage
-            src="/pdf-placeholder.png"
-            alt="PDF placeholder"
-            width={200}
-            height={300}
-            className="w-full"
-          />
-        ) : null}
+        )}
       </div>
       <div className="p-4">
         {showCategories && hasCategories && (

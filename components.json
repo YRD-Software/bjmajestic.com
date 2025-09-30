@@ -13,9 +13,5 @@
   "aliases": {
     "components": "@/components",
     "utils": "@/utilities/ui"
-  },
-  "registries": {
-    "@aceternity": "https://ui.aceternity.com/registry/{name}.json",
-    "@originjs": "https://originjs.com/r/{name}.json"
   }
 }
