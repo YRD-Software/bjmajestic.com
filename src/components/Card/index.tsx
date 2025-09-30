@@ -3,12 +3,34 @@ import { cn } from '@/utilities/ui'
 import useClickableCard from '@/utilities/useClickableCard'
 import Link from 'next/link'
 import React, { Fragment } from 'react'
-import NextImage from 'next/image'
+import dynamic from 'next/dynamic'
 
-import type { Post } from '@/payload-types'
+import type { Post, Media as MediaType } from '@/payload-types'
 
 import { Media } from '@/components/Media'
+
+// Dynamically import react-pdf to prevent SSR issues
+const Document = dynamic(() => import('react-pdf').then((mod) => ({ default: mod.Document })), {
+  ssr: false,
+  loading: () => <div className="animate-pulse bg-gray-200 h-48 w-full rounded"></div>,
+})
+const Page = dynamic(() => import('react-pdf').then((mod) => ({ default: mod.Page })), {
+  ssr: false,
+})
+
 export type CardPostData = Pick<Post, 'slug' | 'categories' | 'meta' | 'title'>
+
+// Setup PDF.js worker - this will only run on client side
+if (typeof window !== 'undefined') {
+  import('react-pdf').then(({ pdfjs }) => {
+    pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.js'
+  })
+}
+
+const options = {
+  cMapUrl: '/cmaps/',
+  standardFontDataUrl: '/standard_fonts/',
+}
 
 export const Card: React.FC<{
   alignItems?: 'center'
@@ -19,6 +41,7 @@ export const Card: React.FC<{
   title?: string
   href?: string | null
   mimeType?: string | null
+  thumbnail?: MediaType | number | null
 }> = (props) => {
   const { card, link } = useClickableCard({})
   const {
@@ -29,6 +52,7 @@ export const Card: React.FC<{
     title: titleFromProps,
     href,
     mimeType,
+    thumbnail,
   } = props
 
   const { slug, categories, meta, title } = doc || {}
@@ -50,12 +74,20 @@ export const Card: React.FC<{
       ref={card.ref}
     >
       <div className="relative">
-        {!metaImage && !mimeType && <div className="">No image</div>}
+        {!metaImage && !thumbnail && !mimeType && <div className="">No image</div>}
         {mimeType !== 'application/pdf' && metaImage && typeof metaImage !== 'string' && (
           <Media resource={metaImage} size="33vw" />
         )}
         {mimeType === 'application/pdf' && (
-          <NextImage src="/pdf-placeholder.png" alt="PDF placeholder" width={200} height={300} className='w-full'/>
+            <Document file={hrefToUse} options={options}>
+            <Page
+              pageNumber={1}
+              height={350}
+              renderTextLayer={false}
+              renderAnnotationLayer={false}
+              className="w-full h-full flex items-center justify-center overflow-hidden"
+            />
+          </Document>
         )}
       </div>
       <div className="p-4">

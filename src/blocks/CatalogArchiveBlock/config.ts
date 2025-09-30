@@ -5,11 +5,6 @@ export const CatalogArchive: Block = {
   interfaceName: 'CatalogArchiveBlock',
   fields: [
     {
-      name: 'title',
-      type: 'text',
-      label: 'Title',
-    },
-    {
       name: 'limit',
       type: 'number',
       label: 'Number of Catalogs to Show',

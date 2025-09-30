@@ -20,14 +20,17 @@ export const CatalogArchiveBlock: React.FC<CatalogArchiveBlockProps & { id?: str
     limit,
   })
 
-  // TODO: Need to make this look nice
   return (
     <div className="container">
       <div className="my-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {fetchedCatalogs?.docs?.map((catalog) => {
           return (
             <div key={catalog.id}>
-              <Card title={catalog.name} href={catalog.url} mimeType={catalog.mimeType}></Card>
+              <Card
+                title={catalog.name}
+                href={catalog.url}
+                mimeType={catalog.mimeType}
+              ></Card>
             </div>
           )
         })}
