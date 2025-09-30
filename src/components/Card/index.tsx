@@ -4,7 +4,6 @@ import useClickableCard from '@/utilities/useClickableCard'
 import Link from 'next/link'
 import React, { Fragment } from 'react'
 import dynamic from 'next/dynamic'
-import { LoaderCircleIcon } from 'lucide-react'
 
 import type { Post, Media as MediaType } from '@/payload-types'
 
