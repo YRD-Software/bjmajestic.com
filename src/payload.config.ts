@@ -121,7 +121,7 @@ export default buildConfig({
         catalog: true,
       },
       token: process.env.BLOB_READ_WRITE_TOKEN,
-      clientUploads: true,
+      clientUploads: false,
     }),
   ],
   secret: process.env.PAYLOAD_SECRET,
