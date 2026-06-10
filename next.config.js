@@ -36,6 +36,7 @@ const nextConfig = {
     
     return config;
   },
+  turbopack: {},
   // Add pg-native to transpilePackages to prevent build issues
   transpilePackages: ['pg', 'pg-cloudflare'],
 }
