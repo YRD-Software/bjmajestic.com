@@ -48,7 +48,7 @@
     "geist": "^1.4.2",
     "graphql": "^16.11.0",
     "lucide-react": "^0.511.0",
-    "next": "15.3.8",
+    "next": "15.5.18",
     "next-sitemap": "^4.2.3",
     "payload": "latest",
     "payload-admin-bar": "^1.0.7",
@@ -75,23 +75,13 @@
     "eslint": "^9.27.0",
     "eslint-config-next": "15.3.2",
     "eslint-plugin-react-hooks": "^5.2.0",
-    "postcss": "^8.5.3",
+    "postcss": "^8.5.10",
     "prettier": "^3.5.3",
     "tailwindcss": "^3.4.17",
     "typescript": "5.7.3"
   },
   "engines": {
-    "node": "^18.20.2 || >=20.9.0",
-    "pnpm": "^9 || ^10"
+    "node": "^18.20.2 || >=20.9.0"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "bufferutil",
-      "esbuild",
-      "sharp",
-      "unrs-resolver",
-      "utf-8-validate"
-    ]
-  },
-  "packageManager": "pnpm@10.26.2+sha512.0e308ff2005fc7410366f154f625f6631ab2b16b1d2e70238444dd6ae9d630a8482d92a451144debc492416896ed16f7b114a86ec68b8404b2443869e68ffda6"
+  "packageManager": "pnpm@11.5.3+sha512.7ac1c919341c213a34dc0d02afb7143c5c26ac26ee8c4782deea821b8ac64d2134a081fd8941dae6e29bbb48f58dfc2b7fbceeccc07cb2f09d219d342a4969ed"
 }
